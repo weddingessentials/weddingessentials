@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: #1A1814; padding: 32px 48px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+  /* Wordmark */
+  .wordmark { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 3px; color: #FAF8F4; }
+  .wordmark-gold { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 3px; color: #B8924A; }
+  .wordmark-sm { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 2px; color: #FAF8F4; }
+  .tagline { font-size: 9px; font-weight: 500; letter-spacing: 3.5px; text-transform: uppercase; color: #B8924A; }
+  .divider { width: 100%; height: 1px; background: rgba(184,146,74,0.2); }
+
+  /* On light */
+  .light-row { background: #FAF8F4; padding: 20px 32px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .light-row .wordmark { color: #1A1814; }
+  .light-row .tagline { color: #B8924A; }
+
+  .size-row { display: flex; gap: 32px; align-items: center; }
+  .size-lbl { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(250,248,244,0.35); }
+</style>
+</head>
+<body>
+  <div class="wordmark">Wedding Essentials</div>
+  <div class="tagline">Coordination · Presence · Memory</div>
+  <div class="divider"></div>
+  <div class="light-row">
+    <div class="wordmark" style="color:#1A1814;">Wedding Essentials</div>
+    <div class="tagline">Dubai</div>
+  </div>
+  <div class="divider"></div>
+  <div class="size-row">
+    <div>
+      <div class="size-lbl" style="margin-bottom:6px;">Nav / 20px</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;letter-spacing:2px;color:#FAF8F4;">Wedding Essentials</div>
+    </div>
+    <div>
+      <div class="size-lbl" style="margin-bottom:6px;">Footer / 18px</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:2px;color:#FAF8F4;">Wedding Essentials</div>
+    </div>
+  </div>
+</body>
+</html>

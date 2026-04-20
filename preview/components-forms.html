@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: #FAF8F4; padding: 24px 32px; display: flex; gap: 32px; }
+  .col { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .lbl { font-size: 8px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #B8924A; margin-bottom: 4px; }
+
+  /* Light form */
+  .f-light { border: 1px solid rgba(26,24,20,0.12); background: #FAF8F4; color: #1A1814; padding: 13px 16px; font-family: 'Montserrat',sans-serif; font-size: 12.5px; font-weight: 300; outline: none; width: 100%; }
+  .f-light::placeholder { color: rgba(26,24,20,0.28); }
+
+  /* Dark form */
+  .dark-wrap { background: #1A1814; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .f-dark { border: 1px solid rgba(184,146,74,0.22); background: rgba(250,248,244,0.05); color: #fff; padding: 12px 16px; font-family: 'Montserrat',sans-serif; font-size: 12.5px; font-weight: 300; outline: none; width: 100%; }
+  .f-dark::placeholder { color: rgba(250,248,244,0.25); }
+  .f-lbl-dark { font-size: 8.5px; letter-spacing: 2px; text-transform: uppercase; color: #B8924A; font-weight: 500; }
+  .form-q { font-family: 'Cormorant Garamond',serif; font-size: 14px; font-style: italic; color: rgba(250,248,244,0.65); padding: 12px 16px; border-left: 2px solid #B8924A; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <div class="col">
+    <div class="lbl">Light Form</div>
+    <input class="f-light" placeholder="Your name" />
+    <input class="f-light" placeholder="Email address" />
+    <input class="f-light" style="border-color:#B8924A;" placeholder="Focused state" />
+    <textarea class="f-light" style="height:60px;resize:none;" placeholder="Tell us about your wedding…"></textarea>
+  </div>
+  <div class="col">
+    <div class="lbl">Dark Form</div>
+    <div class="dark-wrap">
+      <div class="f-lbl-dark">Your Name</div>
+      <input class="f-dark" placeholder="Your name" />
+      <div class="f-lbl-dark">One question</div>
+      <div class="form-q">"When you imagine walking into your wedding — what is the one thing you are most afraid of?"</div>
+      <textarea class="f-dark" style="height:52px;resize:none;" placeholder="Take your time…"></textarea>
+    </div>
+  </div>
+</body>
+</html>

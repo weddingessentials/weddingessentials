@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: #FAF8F4; padding: 20px 24px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(184,146,74,0.1); }
+  .item { background: #FAF8F4; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .item.dark { background: #1A1814; }
+  .dot { width: 28px; height: 28px; border: 1px solid rgba(184,146,74,0.15); }
+  .role { font-size: 8.5px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #8A8478; }
+  .var { font-size: 9.5px; color: #B8924A; margin-top: 2px; }
+  .item.dark .role { color: rgba(250,248,244,0.4); }
+  .item.dark .var { color: #D4AA6A; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="item">
+    <div class="dot" style="background:#FAF8F4;"></div>
+    <div class="role">Background</div>
+    <div class="var">--color-bg</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#F0EDE6;"></div>
+    <div class="role">Alt Background</div>
+    <div class="var">--color-bg-alt</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#1A1814;"></div>
+    <div class="role">Dark Background</div>
+    <div class="var">--color-bg-dark</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#1A1814; border-color:transparent;"></div>
+    <div class="role">Primary Text</div>
+    <div class="var">--color-text</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#8A8478; border-color:transparent;"></div>
+    <div class="role">Secondary Text</div>
+    <div class="var">--color-text-secondary</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#B8924A; border-color:transparent;"></div>
+    <div class="role">Accent</div>
+    <div class="var">--color-accent</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#D4AA6A; border-color:transparent;"></div>
+    <div class="role">Accent Light</div>
+    <div class="var">--color-accent-light</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background: linear-gradient(135deg, rgba(184,146,74,0.2) 50%, transparent 50%); border-color: rgba(184,146,74,0.2);"></div>
+    <div class="role">Border</div>
+    <div class="var">--color-border</div>
+  </div>
+</div>
+</body>
+</html>
