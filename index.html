@@ -1,11 +1,931 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=ui_kits/website/index.html">
-<title>Wedding Essentials</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Essentials — Dubai</title>
+  <meta name="description" content="Wedding management, bridal assistants, catwalk and confidence training, and every detail in between — for the bride who refuses to leave anything to chance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      color: #0a0a0a;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── UTILITIES ── */
+    .pill {
+      display: inline-block;
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 2px solid #0a0a0a;
+      transition: background 0.25s, color 0.25s;
+      cursor: pointer;
+    }
+    .pill:hover { background: transparent; color: #0a0a0a; }
+    .pill--white {
+      background: #fff;
+      color: #0a0a0a;
+      border-color: #fff;
+    }
+    .pill--white:hover { background: transparent; color: #fff; }
+    .pill--outline {
+      background: transparent;
+      color: #0a0a0a;
+      border-color: #0a0a0a;
+    }
+    .pill--outline:hover { background: #0a0a0a; color: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .nav-logo {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-logo { color: #0a0a0a; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color 0.25s;
+      padding: 6px 4px;
+    }
+    nav.scrolled .nav-links a { color: #0a0a0a; }
+    .nav-links a:hover { color: #fff; }
+    nav.scrolled .nav-links a:hover { color: #555; }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: #0a0a0a;
+      background: #fff;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      padding: 10px 26px;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+    .nav-cta:hover { background: transparent; color: #fff; }
+    nav.scrolled .nav-cta { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+    nav.scrolled .nav-cta:hover { background: transparent; color: #0a0a0a; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: #1a1814;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.72;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 24px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(44px, 7.5vw, 88px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
+      margin: 0 auto 44px;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      z-index: 2;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+    .hero-scroll svg { opacity: 0.5; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 120px 60px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    /* ── ABOUT ── */
+    .about {
+      background: #fff;
+      text-align: center;
+    }
+    .about-inner { max-width: 700px; margin: 0 auto; }
+    .about-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 24px;
+    }
+    .about h2 {
+      font-size: clamp(30px, 4.5vw, 52px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .about p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #555;
+      margin-bottom: 44px;
+    }
+
+    /* ── SCROLL STRIP ── */
+    .scroll-strip {
+      background: #0a0a0a;
+      padding: 60px 0;
+      overflow: hidden;
+    }
+    .strip-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      width: max-content;
+    }
+    .strip-row:last-child { margin-bottom: 0; }
+    .strip-row--fwd { animation: scrollFwd 30s linear infinite; }
+    .strip-row--rev { animation: scrollRev 30s linear infinite; }
+    .strip-img {
+      width: 280px;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    @keyframes scrollFwd {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scrollRev {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      background: #0a0a0a;
+      text-align: center;
+      padding: 140px 60px;
+    }
+    .quote-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 48px;
+    }
+    .quote-section blockquote {
+      font-size: clamp(28px, 4.5vw, 54px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #fff;
+      max-width: 900px;
+      margin: 0 auto 56px;
+    }
+    .quote-section blockquote em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ── FOUNDERS ── */
+    .founders {
+      background: #0a0a0a;
+      padding: 120px 60px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .founders-text .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-bottom: 28px;
+    }
+    .founders-text h2 {
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+    .founders-text p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+    }
+    .founders-text p:last-of-type { margin-bottom: 40px; }
+    .founders-img {
+      position: relative;
+    }
+    .founders-img img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* ── TEAM GRID ── */
+    .team-grid-section {
+      background: #fff;
+      padding: 100px 60px;
+    }
+    .team-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .team-header .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .team-header h2 {
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .team-photos {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .team-photos img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      background: #f7f6f4;
+      padding: 120px 60px;
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .services-header .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .services-header h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 44px 36px;
+    }
+    .service-num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: #aaa;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .service-card p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #666;
+      margin-bottom: 28px;
+    }
+    .service-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: #0a0a0a;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .service-link:hover { opacity: 0.5; }
+
+    /* ── PRICING ── */
+    .pricing {
+      background: #fff;
+      text-align: center;
+      padding: 120px 60px;
+    }
+    .pricing-inner { max-width: 620px; margin: 0 auto; }
+    .pricing .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      display: block;
+      margin-bottom: 24px;
+    }
+    .pricing h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      margin-bottom: 24px;
+    }
+    .pricing p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #555;
+      margin-bottom: 44px;
+    }
+
+    /* ── FAQ ── */
+    .faq {
+      background: #0a0a0a;
+      padding: 120px 60px;
+    }
+    .faq-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .faq-header .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-bottom: 20px;
+    }
+    .faq-header h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .faq-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.1); }
+    details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary .q-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.4;
+    }
+    details summary .q-icon {
+      font-size: 24px;
+      color: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      line-height: 1;
+    }
+    details[open] summary .q-icon { transform: rotate(45deg); }
+    details .faq-answer {
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.55);
+      padding: 0 0 28px;
+      max-width: 680px;
+    }
+
+    /* ── FOOTER CTA ── */
+    .footer-cta {
+      background: #0a0a0a;
+      text-align: center;
+      padding: 120px 60px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-cta .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-bottom: 28px;
+    }
+    .footer-cta h2 {
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #fff;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+
+    /* ── FOOTER BAR ── */
+    footer {
+      background: #f7f6f4;
+      padding: 0 60px;
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0a0a0a;
+      text-decoration: none;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: #0a0a0a; }
+    .footer-socials {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-socials a {
+      font-size: 12px;
+      font-weight: 500;
+      color: #555;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .footer-socials a:hover { color: #0a0a0a; }
+    .footer-bottom {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-bottom span {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero h1 { font-size: clamp(38px, 10vw, 64px); }
+      .founders-grid { grid-template-columns: 1fr; gap: 48px; }
+      .founders-img { order: -1; }
+      .services-grid { grid-template-columns: 1fr; }
+      .team-photos { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .team-photos img:last-child { display: none; }
+      footer { padding: 0 24px; }
+      .footer-top { flex-direction: column; gap: 24px; text-align: center; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .quote-section { padding: 100px 24px; }
+      .footer-cta { padding: 100px 24px; }
+      .faq { padding: 100px 24px; }
+      .scroll-strip { padding: 40px 0; }
+    }
+  </style>
 </head>
 <body>
-<script>window.location.replace('ui_kits/website/index.html');</script>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Wedding Essentials</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Enquire</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="/images/hero.jpg" alt="Wedding Essentials — Dubai">
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Wedding Essentials · Dubai, UAE</p>
+    <h1>We change the<br>energy in the room.</h1>
+    <p class="hero-sub">Wedding management, bridal assistance, catwalk and confidence training — for the bride who refuses to leave anything to chance.</p>
+    <a href="#contact" class="pill pill--white">Book a consultation</a>
+  </div>
+  <div class="hero-scroll">
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      <path d="M8 0v20M1 13l7 7 7-7" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="about-label reveal">Who We Are</p>
+    <h2 class="reveal delay-1">Every wedding has a planner.<br>We prepare <em>the bride.</em></h2>
+    <p class="reveal delay-2">Wedding Essentials exists for the woman at the centre of it all. We believe the most important wedding detail is not the florals or the venue — it is her. Her confidence, her presence, her experience of every single moment. We are here to make sure she is ready for all of it.</p>
+    <a href="#contact" class="pill pill--outline reveal delay-3">Work with us</a>
+  </div>
+</section>
+
+<!-- SCROLLING IMAGE STRIP -->
+<div class="scroll-strip" id="portfolio">
+  <div class="strip-row strip-row--fwd">
+    <img class="strip-img" src="/images/portfolio-1.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-2.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-3.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-4.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-5.jpg" alt="Wedding">
+    <!-- duplicated for seamless loop -->
+    <img class="strip-img" src="/images/portfolio-1.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-2.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-3.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-4.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-5.jpg" alt="Wedding">
+  </div>
+  <div class="strip-row strip-row--rev">
+    <img class="strip-img" src="/images/portfolio-3.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-4.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-5.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-1.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-2.jpg" alt="Wedding">
+    <!-- duplicated for seamless loop -->
+    <img class="strip-img" src="/images/portfolio-3.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-4.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-5.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-1.jpg" alt="Wedding">
+    <img class="strip-img" src="/images/portfolio-2.jpg" alt="Wedding">
+  </div>
+</div>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <p class="quote-label reveal">The difference</p>
+  <blockquote class="reveal delay-1">"The most important person at a wedding is the bride. The most important preparation she can do has nothing to do with the décor — it has everything to do with <em>her.</em>"</blockquote>
+  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:48px;" class="reveal delay-2">— Mira, Founder of Wedding Essentials</p>
+  <a href="#contact" class="pill pill--white reveal delay-3">Start your journey</a>
+</section>
+
+<!-- FOUNDERS -->
+<section class="founders">
+  <div class="founders-grid">
+    <div class="founders-text reveal">
+      <span class="label">The founder</span>
+      <h2>I built this because brides deserve to be present in their own moment.</h2>
+      <p>My name is Mira. I am a wedding expert, bridal confidence coach, and the founder of Wedding Essentials. For years I watched brides manage their weddings rather than experience them — present in body, but slightly outside of the moment.</p>
+      <p>I work with brides across the Gulf and beyond to change that. Through presence training, on-the-day management, and one-on-one catwalk coaching, I ensure that the most important day of your life is one you actually live through — completely, consciously, from the first moment to the last.</p>
+      <a href="#contact" class="pill pill--white">Work with Mira</a>
+    </div>
+    <div class="founders-img reveal delay-2">
+      <img src="/images/portfolio-1.jpg" alt="Mira — Founder of Wedding Essentials">
+    </div>
+  </div>
+</section>
+
+<!-- TEAM GRID -->
+<section class="team-grid-section">
+  <div class="team-header reveal">
+    <span class="label">Our work</span>
+    <h2>Some of the weddings we have had<br>the privilege of being part of.</h2>
+  </div>
+  <div class="team-photos reveal">
+    <img src="/images/portfolio-1.jpg" alt="Wedding">
+    <img src="/images/portfolio-2.jpg" alt="Wedding">
+    <img src="/images/portfolio-3.jpg" alt="Wedding">
+    <img src="/images/portfolio-4.jpg" alt="Wedding">
+    <img src="/images/portfolio-5.jpg" alt="Wedding">
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header reveal">
+    <span class="label">What we do</span>
+    <h2>Five services. One purpose.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <h3>Wedding Management</h3>
+      <p>The timeline is running. The vendors are coordinating. The family is managed. The protocol is followed. You don't know any of this — because you don't need to. You arrive as the bride. We handle everything else.</p>
+      <a href="#contact" class="service-link">Enquire →</a>
+    </div>
+    <div class="service-card reveal delay-1">
+      <span class="service-num">02</span>
+      <h3>Bridal Assistants</h3>
+      <p>The dress that needs holding before you walk in. The touch-up between outfit changes. The quiet voice that tells you everything is going as planned. Our bridal assistants are trained, calm, and completely dedicated to you.</p>
+      <a href="#contact" class="service-link">Enquire →</a>
+    </div>
+    <div class="service-card reveal delay-2">
+      <span class="service-num">03</span>
+      <h3>Catwalk & Confidence Training</h3>
+      <p>Those twenty seconds when every person who loves you turns to look — have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.</p>
+      <a href="#contact" class="service-link">Book a session →</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">04</span>
+      <h3>Polaroid Service</h3>
+      <p>In a world of digital everything, there is something extraordinary about a photograph you can hold in your hands the same night it was taken. Our Polaroid service captures the candid, the tender, and the in-between.</p>
+      <a href="#contact" class="service-link">Enquire →</a>
+    </div>
+    <div class="service-card reveal delay-1">
+      <span class="service-num">05</span>
+      <h3>Content Creation</h3>
+      <p>Not staged. Not filtered beyond recognition. Our content creators move through your day with intention — capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.</p>
+      <a href="#contact" class="service-link">Enquire →</a>
+    </div>
+    <div class="service-card reveal delay-2" style="background:#0a0a0a;color:#fff;display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <p style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.45);margin-bottom:24px;letter-spacing:0.05em;text-transform:uppercase;">Ready?</p>
+        <h3 style="color:#fff;font-size:22px;margin-bottom:16px;">Your wedding is<br>once in a lifetime.</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:14px;line-height:1.7;margin-bottom:0;">We work with a limited number of brides each season. If you are interested, we would love to hear from you.</p>
+      </div>
+      <div style="margin-top:36px;">
+        <a href="#contact" class="pill pill--white" style="font-size:12px;padding:12px 24px;">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="pricing-inner">
+    <span class="label reveal">Pricing</span>
+    <h2 class="reveal delay-1">Bespoke, not boxed.</h2>
+    <p class="reveal delay-2">Every wedding is different. Every bride is different. That is why we do not offer packages with fixed line items — we build each proposal around you, your wedding, and exactly what you need.<br><br>Reach out to us and we will put together a personalised proposal within 48 hours.</p>
+    <a href="#contact" class="pill reveal delay-3">Request a proposal</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <span class="label">FAQs</span>
+      <h2>Common questions</h2>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>
+          <span class="q-text">Where are you based and where do you work?</span>
+          <span class="q-icon">+</span>
+        </summary>
+        <p class="faq-answer">We are based in Dubai and serve brides across the UAE and GCC. We also accept international enquiries — for weddings outside the region, please reach out directly and we will discuss logistics.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>
+          <span class="q-text">How far in advance should I book?</span>
+          <span class="q-icon">+</span>
+        </summary>
+        <p class="faq-answer">We recommend reaching out at least 3–6 months before your wedding date. We work with a limited number of brides each season to ensure every client receives our full attention, so availability can fill quickly during peak seasons.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>
+          <span class="q-text">What does a bridal assistant actually do on the day?</span>
+          <span class="q-icon">+</span>
+        </summary>
+        <p class="faq-answer">Your bridal assistant is dedicated entirely to you from the moment you begin getting ready until the last moment of the evening. She manages your dress, coordinates touch-ups between outfit changes, keeps you calm and informed, and makes sure you never have to think about what comes next.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>
+          <span class="q-text">How many sessions does the catwalk training involve?</span>
+          <span class="q-icon">+</span>
+        </summary>
+        <p class="faq-answer">Mira works with each bride individually and the number of sessions depends on your goals and timeline. Most brides do 2–4 sessions. Each session is one-on-one and fully personalised — this is not a group class. You can book a single introductory session to start.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>
+          <span class="q-text">Can I book individual services or do I have to take everything?</span>
+          <span class="q-icon">+</span>
+        </summary>
+        <p class="faq-answer">Absolutely. Each of our services can be booked independently. Many brides start with one service and add others as their date approaches. Get in touch and we will help you decide what makes sense for your wedding.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>
+          <span class="q-text">Do you work with non-Arabic or multicultural weddings?</span>
+          <span class="q-icon">+</span>
+        </summary>
+        <p class="faq-answer">Yes. We have worked with brides from across the world in Dubai and the GCC. We are experienced across a wide range of cultural traditions and ceremony formats. Every bride is welcome.</p>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta" id="contact">
+  <span class="label reveal">Get in touch</span>
+  <h2 class="reveal delay-1">Every wedding begins<br>with a conversation.</h2>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal delay-2">
+    <a href="https://wa.me/971506881534" class="pill pill--white">WhatsApp us</a>
+    <a href="https://instagram.com/weddingessentials.me" class="pill" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.35);">Instagram</a>
+  </div>
+  <p style="margin-top:40px;font-size:13px;color:rgba(255,255,255,0.3);" class="reveal delay-3">Based in Dubai · Available across the UAE and GCC · International enquiries welcome</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <a href="#" class="footer-logo">Wedding Essentials</a>
+    <ul class="footer-nav">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-socials">
+      <a href="https://instagram.com/weddingessentials.me" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/971506881534" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Wedding Essentials · Dubai</span>
+    <span>weddingessentials.me</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
