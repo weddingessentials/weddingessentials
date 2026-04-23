@@ -17,6 +17,9 @@
       color: #0a0a0a;
       background: #fff;
       overflow-x: hidden;
+      word-break: normal;
+      overflow-wrap: break-word;
+      hyphens: none;
     }
 
     /* ── CTA LINKS ── */
@@ -56,20 +59,20 @@
       text-decoration: none;
       letter-spacing: 0.01em;
     }
-    .nav-links {
+    .nav-actions {
       display: flex;
       align-items: center;
-      gap: 36px;
-      list-style: none;
+      gap: 28px;
     }
-    .nav-links a {
-      font-size: 13px;
-      font-weight: 400;
+    .nav-btn {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
       color: #0a0a0a;
       text-decoration: none;
       transition: opacity 0.2s;
     }
-    .nav-links a:hover { opacity: 0.45; }
+    .nav-btn:hover { opacity: 0.45; }
 
     /* ── HERO ── */
     .hero {
@@ -98,13 +101,24 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
+      animation: heroReveal 1.8s ease-out forwards;
+    }
+    @keyframes heroReveal {
+      from { transform: scale(1.08); filter: brightness(0.7); }
+      to   { transform: scale(1.0);  filter: brightness(1);   }
     }
     .hero-content {
       position: relative;
       z-index: 2;
       padding: 0 24px;
       max-width: 860px;
+      animation: heroTextIn 0.8s ease-out 0.4s both;
+    }
+    @keyframes heroTextIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .hero-eyebrow {
       font-size: 11px;
@@ -144,7 +158,7 @@
     }
 
     /* ── SECTION BASE ── */
-    section { padding: 100px 60px; }
+    section { padding: 100px 60px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .section-inner { max-width: 700px; margin: 0 auto; text-align: center; }
 
     /* ── ABOUT ── */
@@ -250,6 +264,7 @@
       gap: 80px;
       align-items: center;
       max-width: 1080px;
+      width: 100%;
       margin: 0 auto;
     }
     .founders-text .label {
@@ -288,6 +303,7 @@
       background: #fff;
       padding: 80px 0;
     }
+    .team-grid-section > * { width: 100%; }
     .team-header {
       text-align: center;
       padding: 0 60px;
@@ -311,6 +327,7 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 2px;
+      width: 100%;
     }
     .team-photos img {
       width: 100%;
@@ -344,6 +361,7 @@
     }
     .services-list {
       max-width: 900px;
+      width: 100%;
       margin: 0 auto;
     }
     .service-item {
@@ -409,7 +427,7 @@
       background: #fff;
       padding: 100px 60px;
     }
-    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-inner { max-width: 760px; width: 100%; margin: 0 auto; }
     .faq-header {
       text-align: center;
       margin-bottom: 64px;
@@ -571,7 +589,6 @@
     /* ── MOBILE ── */
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
-      .nav-links { display: none; }
       section { padding: 72px 24px; }
       .quote-section, .footer-cta { padding: 80px 24px; }
       .faq { padding: 80px 24px; }
@@ -600,19 +617,16 @@
 <!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-logo">Wedding Essentials</a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Enquire</a></li>
-  </ul>
+  <div class="nav-actions">
+    <a href="#portfolio" class="nav-btn">PORTFOLIO</a>
+    <a href="#contact" class="nav-btn">ENQUIRE</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="/assets/photo-bride-staircase.jpg" alt="Wedding Essentials — Dubai">
+    <img src="/12300.jpg" alt="Wedding Essentials — Dubai">
   </div>
   <div class="hero-content">
     <p class="hero-eyebrow">Wedding Essentials · Dubai, UAE</p>
@@ -683,9 +697,9 @@
   <div class="founders-grid">
     <div class="founders-text reveal">
       <span class="label">The founder</span>
-      <h2>i built this because brides deserve to be present in their own moment.</h2>
-      <p>My name is Mira. I am a wedding expert, bridal confidence coach, and the founder of Wedding Essentials. For years I watched brides manage their weddings rather than experience them — present in body, but slightly outside of the moment.</p>
-      <p>I work with brides across the Gulf and beyond to change that. Through presence training, on-the-day management, and one-on-one catwalk coaching, I ensure that the most important day of your life is one you actually live through — completely, consciously, from the first moment to the last.</p>
+      <h2>I built this because brides deserve to be present in their own moment.</h2>
+      <p>My name is Mira. I am a wedding expert, bridal confidence coach, and the founder of Wedding Essentials. For years I watched brides manage their weddings rather than experience them - present in body, but slightly outside of the moment.</p>
+      <p>I work with brides across the Gulf and beyond to change that. Through presence training, on-the-day management, and one-on-one catwalk coaching, I ensure that the most important day of your life is one you actually live through - completely, consciously, from the first moment to the last.</p>
       <a href="#contact" class="cta-link cta-link--white">work with Mira</a>
     </div>
     <div class="founders-img reveal delay-2">
