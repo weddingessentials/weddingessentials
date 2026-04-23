@@ -186,35 +186,23 @@
       margin: 0 auto 36px;
     }
 
-    /* ── SCROLL STRIP ── */
-    .scroll-strip {
-      background: #000;
-      padding: 32px 0;
-      overflow: hidden;
+    /* ── PORTFOLIO GALLERY ── */
+    .portfolio-section {
+      background: #0a0a0a;
+      padding: 0;
+      min-height: unset;
+      display: block;
     }
-    .strip-row {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 4px;
-      width: max-content;
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
     }
-    .strip-row:last-child { margin-bottom: 0; }
-    .strip-row--fwd { animation: scrollFwd 28s linear infinite; }
-    .strip-row--rev { animation: scrollRev 28s linear infinite; }
-    .strip-img {
-      width: 250px;
-      height: 250px;
+    .portfolio-grid img {
+      width: 100%;
+      aspect-ratio: 3/4;
       object-fit: cover;
       display: block;
-      flex-shrink: 0;
-    }
-    @keyframes scrollFwd {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    @keyframes scrollRev {
-      0%   { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
     }
 
     /* ── QUOTE ── */
@@ -581,10 +569,7 @@
       .services-section { padding: 80px 24px; }
       .service-item { grid-template-columns: 36px 1fr; }
       .service-item .cta-link { display: none; }
-      .team-grid-section { padding: 64px 0; }
-      .team-header { padding: 0 24px; }
-      .team-photos { grid-template-columns: repeat(2, 1fr); }
-      .team-photos img:last-child { display: none; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
       footer { padding: 36px 24px; }
       .footer-bottom-row { flex-direction: column; gap: 24px; text-align: center; }
       .footer-socials-col { align-items: center; }
@@ -611,7 +596,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Wedding Essentials · Dubai, UAE</p>
     <h1>We change the energy<br>in the room.</h1>
-    <a href="#contact" class="cta-link cta-link--white">Book a consultation</a>
+    <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link cta-link--white">Book a consultation</a>
   </div>
   <div class="hero-scroll">
     <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
@@ -630,39 +615,32 @@
   </div>
 </section>
 
-<!-- SCROLLING IMAGE STRIP -->
-<div class="scroll-strip" id="portfolio">
-  <div class="strip-row strip-row--fwd">
-    <img class="strip-img" src="/assets/photo-bouquet-detail.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-brand-card.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bride-preparation.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-orchid-bouquet.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-team-bride.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bride-staircase.jpg" alt="Wedding">
-    <!-- duplicated for seamless loop -->
-    <img class="strip-img" src="/assets/photo-bouquet-detail.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-brand-card.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bride-preparation.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-orchid-bouquet.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-team-bride.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bride-staircase.jpg" alt="Wedding">
+<!-- PORTFOLIO GALLERY -->
+<section class="portfolio-section" id="portfolio">
+  <div class="portfolio-grid">
+    <img src="/image1.jpg" alt="Wedding">
+    <img src="/image2.jpg" alt="Wedding">
+    <img src="/image3.jpg" alt="Wedding">
+    <img src="/image4.jpg" alt="Wedding">
+    <img src="/image5.jpg" alt="Wedding">
+    <img src="/image6.jpg" alt="Wedding">
+    <img src="/image7.jpg" alt="Wedding">
+    <img src="/image8.jpg" alt="Wedding">
+    <img src="/image9.jpg" alt="Wedding">
+    <img src="/image10.jpg" alt="Wedding">
+    <img src="/image11.jpg" alt="Wedding">
+    <img src="/image12.jpg" alt="Wedding">
+    <img src="/image13.jpg" alt="Wedding">
+    <img src="/image14.jpg" alt="Wedding">
+    <img src="/image15.jpg" alt="Wedding">
+    <img src="/image16.jpg" alt="Wedding">
+    <img src="/image17.jpg" alt="Wedding">
+    <img src="/image18.jpg" alt="Wedding">
+    <img src="/image19.jpg" alt="Wedding">
+    <img src="/image20.jpg" alt="Wedding">
+    <img src="/image21.jpg" alt="Wedding">
   </div>
-  <div class="strip-row strip-row--rev">
-    <img class="strip-img" src="/assets/photo-bride-staircase.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-team-bride.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-orchid-bouquet.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bride-preparation.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-brand-card.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bouquet-detail.jpg" alt="Wedding">
-    <!-- duplicated for seamless loop -->
-    <img class="strip-img" src="/assets/photo-bride-staircase.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-team-bride.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-orchid-bouquet.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bride-preparation.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-brand-card.jpg" alt="Wedding">
-    <img class="strip-img" src="/assets/photo-bouquet-detail.jpg" alt="Wedding">
-  </div>
-</div>
+</section>
 
 <!-- QUOTE -->
 <section class="quote-section">
@@ -688,20 +666,6 @@
   </div>
 </section>
 
-<!-- PORTFOLIO GRID -->
-<section class="team-grid-section">
-  <div class="team-header reveal">
-    <span class="label">Our work</span>
-    <h2>Some of the weddings we have had<br>the privilege of being part of.</h2>
-  </div>
-  <div class="team-photos reveal">
-    <img src="/assets/photo-bouquet-detail.jpg" alt="Wedding">
-    <img src="/assets/photo-brand-card.jpg" alt="Wedding">
-    <img src="/assets/photo-bride-preparation.jpg" alt="Wedding">
-    <img src="/assets/photo-orchid-bouquet.jpg" alt="Wedding">
-    <img src="/assets/photo-team-bride.jpg" alt="Wedding">
-  </div>
-</section>
 
 <!-- SERVICES -->
 <section class="services-section" id="services">
@@ -714,7 +678,7 @@
       <span class="service-num">01</span>
       <div class="service-body">
         <h3>Wedding Management</h3>
-        <p>The timeline is running. The vendors are coordinating. The family is managed. The protocol is followed. You don't know any of this -because you don't need to. You arrive as the bride. We handle everything else.</p>
+        <p>The timeline is running. The vendors are coordinating. The family is managed. The protocol is followed. You don't know any of this - because you don't need to. You arrive as the bride. We handle everything else.</p>
       </div>
       <a href="#contact" class="cta-link">Enquire</a>
     </div>
@@ -730,7 +694,7 @@
       <span class="service-num">03</span>
       <div class="service-body">
         <h3>Catwalk &amp; Confidence Training</h3>
-        <p>Those twenty seconds when every person who loves you turns to look -have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.</p>
+        <p>Those twenty seconds when every person who loves you turns to look - have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.</p>
       </div>
       <a href="#contact" class="cta-link">Book a session</a>
     </div>
@@ -746,7 +710,7 @@
       <span class="service-num">05</span>
       <div class="service-body">
         <h3>Content Creation</h3>
-        <p>Not staged. Not filtered beyond recognition. Our content creators move through your day with intention -capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.</p>
+        <p>Not staged. Not filtered beyond recognition. Our content creators move through your day with intention - capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.</p>
       </div>
       <a href="#contact" class="cta-link">Enquire</a>
     </div>
@@ -777,7 +741,7 @@
           <span class="q-text">Where are you based and where do you work?</span>
           <span class="q-icon">+</span>
         </summary>
-        <p class="faq-answer">We are based in Dubai and serve brides across the UAE and GCC. We also accept international enquiries -for weddings outside the region, please reach out directly and we will discuss logistics.</p>
+        <p class="faq-answer">We are based in Dubai and serve brides across the UAE and GCC. We also accept international enquiries - for weddings outside the region, please reach out directly and we will discuss logistics.</p>
       </details>
     </div>
 
@@ -807,7 +771,7 @@
           <span class="q-text">How many sessions does the catwalk training involve?</span>
           <span class="q-icon">+</span>
         </summary>
-        <p class="faq-answer">Mira works with each bride individually and the number of sessions depends on your goals and timeline. Most brides do 2–4 sessions. Each session is one-on-one and fully personalised -this is not a group class. You can book a single introductory session to start.</p>
+        <p class="faq-answer">Mira works with each bride individually and the number of sessions depends on your goals and timeline. Most brides do 2–4 sessions. Each session is one-on-one and fully personalised - this is not a group class. You can book a single introductory session to start.</p>
       </details>
     </div>
 
@@ -845,20 +809,6 @@
   <p style="margin-top:40px;font-size:12px;color:rgba(255,255,255,0.28);" class="reveal delay-3">Based in Dubai · Available across the UAE and GCC · International enquiries welcome</p>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-bottom-row">
-    <div class="footer-logo-col">
-      <a href="#" class="footer-logo">Wedding Essentials</a>
-      <p class="footer-tagline">Dubai, UAE &amp; GCC</p>
-    </div>
-    <div class="footer-socials-col">
-      <a href="https://instagram.com/weddingessentials.me" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://wa.me/971506881534" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
-  </div>
-  <p class="footer-copy">© 2025 Wedding Essentials · weddingessentials.me</p>
-</footer>
 
 <script>
   // Scroll reveal
