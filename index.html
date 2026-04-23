@@ -138,12 +138,6 @@
       letter-spacing: 0;
       margin-bottom: 40px;
     }
-    .hero-cta {
-      font-family: 'Sacramento', cursive;
-      font-size: 1.5rem;
-      letter-spacing: 0;
-      padding-bottom: 3px;
-    }
     .hero-scroll {
       position: absolute;
       bottom: 36px;
@@ -194,23 +188,51 @@
       margin: 0 auto 36px;
     }
 
-    /* ── PORTFOLIO GALLERY ── */
+    /* ── PORTFOLIO CAROUSEL ── */
     .portfolio-section {
       background: #0a0a0a;
       padding: 0;
       min-height: unset;
       display: block;
     }
-    .portfolio-grid {
+    .portfolio-carousel { overflow: hidden; }
+    .portfolio-track {
+      display: flex;
+      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .portfolio-slide {
+      min-width: 100%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 3px;
     }
-    .portfolio-grid img {
+    .portfolio-slide img {
       width: 100%;
-      aspect-ratio: 3/4;
+      aspect-ratio: 1/1;
       object-fit: cover;
       display: block;
+    }
+    .portfolio-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 22px 0;
+      background: #0a0a0a;
+    }
+    .portfolio-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .portfolio-dot.active {
+      background: #fff;
+      transform: scale(1.3);
     }
 
     /* ── QUOTE ── */
@@ -577,7 +599,7 @@
       .services-section { padding: 80px 24px; }
       .service-item { grid-template-columns: 36px 1fr; }
       .service-item .cta-link { display: none; }
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-slide { grid-template-columns: repeat(2, 1fr); }
       footer { padding: 36px 24px; }
       .footer-bottom-row { flex-direction: column; gap: 24px; text-align: center; }
       .footer-socials-col { align-items: center; }
@@ -592,7 +614,7 @@
   <a href="#" class="nav-logo">Wedding Essentials</a>
   <div class="nav-actions">
     <a href="#portfolio" class="nav-btn">PORTFOLIO</a>
-    <a href="#contact" class="nav-btn">ENQUIRE</a>
+    <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="nav-btn">ENQUIRE</a>
   </div>
 </nav>
 
@@ -604,7 +626,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Wedding Essentials · Dubai, UAE</p>
     <h1>We change the energy<br>in the room.</h1>
-    <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link cta-link--white hero-cta">Book a consultation</a>
+    <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link cta-link--white">Book a consultation</a>
   </div>
   <div class="hero-scroll">
     <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
@@ -623,30 +645,49 @@
   </div>
 </section>
 
-<!-- PORTFOLIO GALLERY -->
+<!-- PORTFOLIO CAROUSEL -->
 <section class="portfolio-section" id="portfolio">
-  <div class="portfolio-grid">
-    <img src="/image1.jpg" alt="Wedding">
-    <img src="/image2.jpg" alt="Wedding">
-    <img src="/image3.jpg" alt="Wedding">
-    <img src="/image4.jpg" alt="Wedding">
-    <img src="/image5.jpg" alt="Wedding">
-    <img src="/image6.jpg" alt="Wedding">
-    <img src="/image7.jpg" alt="Wedding">
-    <img src="/image8.jpg" alt="Wedding">
-    <img src="/image9.jpg" alt="Wedding">
-    <img src="/image10.jpg" alt="Wedding">
-    <img src="/image11.jpg" alt="Wedding">
-    <img src="/image12.jpg" alt="Wedding">
-    <img src="/image13.jpg" alt="Wedding">
-    <img src="/image14.jpg" alt="Wedding">
-    <img src="/image15.jpg" alt="Wedding">
-    <img src="/image16.jpg" alt="Wedding">
-    <img src="/image17.jpg" alt="Wedding">
-    <img src="/image18.jpg" alt="Wedding">
-    <img src="/image19.jpg" alt="Wedding">
-    <img src="/image20.jpg" alt="Wedding">
-    <img src="/image21.jpg" alt="Wedding">
+  <div class="portfolio-carousel">
+    <div class="portfolio-track">
+      <div class="portfolio-slide">
+        <img src="/image1.jpg" alt="Wedding">
+        <img src="/image2.jpg" alt="Wedding">
+        <img src="/image3.jpg" alt="Wedding">
+        <img src="/image4.jpg" alt="Wedding">
+        <img src="/image5.jpg" alt="Wedding">
+        <img src="/image6.jpg" alt="Wedding">
+      </div>
+      <div class="portfolio-slide">
+        <img src="/image7.jpg" alt="Wedding">
+        <img src="/image8.jpg" alt="Wedding">
+        <img src="/image9.jpg" alt="Wedding">
+        <img src="/image10.jpg" alt="Wedding">
+        <img src="/image11.jpg" alt="Wedding">
+        <img src="/image12.jpg" alt="Wedding">
+      </div>
+      <div class="portfolio-slide">
+        <img src="/image13.jpg" alt="Wedding">
+        <img src="/image14.jpg" alt="Wedding">
+        <img src="/image15.jpg" alt="Wedding">
+        <img src="/image16.jpg" alt="Wedding">
+        <img src="/image17.jpg" alt="Wedding">
+        <img src="/image18.jpg" alt="Wedding">
+      </div>
+      <div class="portfolio-slide">
+        <img src="/image19.jpg" alt="Wedding">
+        <img src="/image20.jpg" alt="Wedding">
+        <img src="/image21.jpg" alt="Wedding">
+        <img src="/image1.jpg" alt="Wedding">
+        <img src="/image2.jpg" alt="Wedding">
+        <img src="/image3.jpg" alt="Wedding">
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-dots">
+    <button class="portfolio-dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="portfolio-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="portfolio-dot" data-slide="2" aria-label="Slide 3"></button>
+    <button class="portfolio-dot" data-slide="3" aria-label="Slide 4"></button>
   </div>
 </section>
 
@@ -669,7 +710,7 @@
       <a href="#contact" class="cta-link cta-link--white">Work with Mira</a>
     </div>
     <div class="founders-img reveal delay-2">
-      <img src="/assets/photo-bride-preparation.jpg" alt="Mira -Founder of Wedding Essentials">
+      <img src="/image7.jpg" alt="Mira - Founder of Wedding Essentials">
     </div>
   </div>
 </section>
@@ -725,15 +766,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing">
-  <div class="pricing-inner" style="max-width:580px;margin:0 auto;">
-    <span class="label reveal">Pricing</span>
-    <h2 class="reveal delay-1">Bespoke, not boxed.</h2>
-    <p class="reveal delay-2">Every wedding is different. Every bride is different. That is why we do not offer packages with fixed line items - we build each proposal around you, your wedding, and exactly what you need.<br><br>Reach out and we will put together a personalised proposal within 48 hours.</p>
-    <a href="#contact" class="cta-link reveal delay-3">Request a proposal</a>
-  </div>
-</section>
 
 <!-- FAQ -->
 <section class="faq" id="faq">
@@ -829,6 +861,24 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Portfolio carousel
+  const track = document.querySelector('.portfolio-track');
+  const dots  = document.querySelectorAll('.portfolio-dot');
+  let cur = 0;
+  const total = dots.length;
+
+  function goTo(n) {
+    cur = ((n % total) + total) % total;
+    track.style.transform = `translateX(-${cur * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  const autoplay = setInterval(() => goTo(cur + 1), 5000);
+
+  // Pause autoplay on hover
+  track.addEventListener('mouseenter', () => clearInterval(autoplay));
 </script>
 </body>
 </html>
