@@ -102,7 +102,7 @@
     }
     .hero-content {
       position: absolute;
-      top: 65%;
+      top: 52%;
       left: 50%;
       transform: translateX(-50%);
       width: 90%;
@@ -211,11 +211,10 @@
       width: 100%;
       display: block;
     }
-    .v-col:nth-child(1) .v-col-inner { animation: vScrollUp 28s linear infinite; }
-    .v-col:nth-child(2) .v-col-inner { animation: vScrollDown 34s linear infinite; }
-    .v-col:nth-child(3) .v-col-inner { animation: vScrollUp 22s linear infinite; }
-    .v-col:nth-child(4) .v-col-inner { animation: vScrollDown 38s linear infinite; }
-    .v-col:nth-child(5) .v-col-inner { animation: vScrollUp 30s linear infinite; }
+    .v-col:nth-child(1) .v-col-inner { animation: vScrollUp 58s linear infinite; }
+    .v-col:nth-child(2) .v-col-inner { animation: vScrollDown 72s linear infinite; }
+    .v-col:nth-child(3) .v-col-inner { animation: vScrollUp 48s linear infinite; }
+    .v-col:nth-child(4) .v-col-inner { animation: vScrollDown 65s linear infinite; }
     @keyframes vScrollUp {
       from { transform: translateY(0); }
       to   { transform: translateY(-50%); }
@@ -225,8 +224,7 @@
       to   { transform: translateY(0); }
     }
     @media (max-width: 900px) {
-      .portfolio-vertical-section .v-col:nth-child(4),
-      .portfolio-vertical-section .v-col:nth-child(5) { display: none; }
+      .portfolio-vertical-section .v-col:nth-child(4) { display: none; }
     }
 
     /* QUOTE */
@@ -259,6 +257,8 @@
       color: rgba(255,255,255,0.35);
       margin-bottom: 32px;
     }
+    .quote-br { display: none; }
+    @media (min-width: 901px) { .quote-br { display: block; } }
 
     /* FOUNDERS */
     .founders {
@@ -606,78 +606,77 @@
 <!-- PORTFOLIO VERTICAL SCROLL -->
 <section class="portfolio-vertical-section" id="portfolio">
 
-  <!-- Column 1 - scrolls up slowly -->
+  <!-- Column 1 - scrolls up 58s -->
   <div class="v-col">
     <div class="v-col-inner">
-      <img src="/image2.jpg" alt="Wedding">
-      <img src="/image11.jpg" alt="Wedding">
-      <img src="/image19.jpg" alt="Wedding">
-      <img src="/image8.jpg" alt="Wedding">
+      <img src="/image1.jpg" alt="Wedding">
+      <img src="/image5.jpg" alt="Wedding">
+      <img src="/image9.jpg" alt="Wedding">
+      <img src="/image13.jpg" alt="Wedding">
+      <img src="/image17.jpg" alt="Wedding">
+      <img src="/image21.jpg" alt="Wedding">
       <!-- duplicate for seamless loop -->
+      <img src="/image1.jpg" alt="Wedding">
+      <img src="/image5.jpg" alt="Wedding">
+      <img src="/image9.jpg" alt="Wedding">
+      <img src="/image13.jpg" alt="Wedding">
+      <img src="/image17.jpg" alt="Wedding">
+      <img src="/image21.jpg" alt="Wedding">
+    </div>
+  </div>
+
+  <!-- Column 2 - scrolls down 72s -->
+  <div class="v-col">
+    <div class="v-col-inner">
       <img src="/image2.jpg" alt="Wedding">
+      <img src="/image6.jpg" alt="Wedding">
+      <img src="/image10.jpg" alt="Wedding">
+      <img src="/image14.jpg" alt="Wedding">
+      <img src="/image18.jpg" alt="Wedding">
+      <img src="/IMG_7847.JPG" alt="Wedding">
+      <!-- duplicate -->
+      <img src="/image2.jpg" alt="Wedding">
+      <img src="/image6.jpg" alt="Wedding">
+      <img src="/image10.jpg" alt="Wedding">
+      <img src="/image14.jpg" alt="Wedding">
+      <img src="/image18.jpg" alt="Wedding">
+      <img src="/IMG_7847.JPG" alt="Wedding">
+    </div>
+  </div>
+
+  <!-- Column 3 - scrolls up 48s -->
+  <div class="v-col">
+    <div class="v-col-inner">
+      <img src="/image3.jpg" alt="Wedding">
+      <img src="/image7.jpg" alt="Wedding">
       <img src="/image11.jpg" alt="Wedding">
+      <img src="/image15.jpg" alt="Wedding">
       <img src="/image19.jpg" alt="Wedding">
+      <img src="/IMG_7844.JPG" alt="Wedding">
+      <!-- duplicate -->
+      <img src="/image3.jpg" alt="Wedding">
+      <img src="/image7.jpg" alt="Wedding">
+      <img src="/image11.jpg" alt="Wedding">
+      <img src="/image15.jpg" alt="Wedding">
+      <img src="/image19.jpg" alt="Wedding">
+      <img src="/IMG_7844.JPG" alt="Wedding">
+    </div>
+  </div>
+
+  <!-- Column 4 - scrolls down 65s -->
+  <div class="v-col">
+    <div class="v-col-inner">
+      <img src="/image4.jpg" alt="Wedding">
       <img src="/image8.jpg" alt="Wedding">
-    </div>
-  </div>
-
-  <!-- Column 2 - scrolls down -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/IMG_7847.JPG" alt="Wedding">
-      <img src="/image10.jpg" alt="Wedding">
-      <img src="/image20.jpg" alt="Wedding">
-      <img src="/image14.jpg" alt="Wedding">
-      <!-- duplicate -->
-      <img src="/IMG_7847.JPG" alt="Wedding">
-      <img src="/image10.jpg" alt="Wedding">
-      <img src="/image20.jpg" alt="Wedding">
-      <img src="/image14.jpg" alt="Wedding">
-    </div>
-  </div>
-
-  <!-- Column 3 - scrolls up fast -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/image3.jpg" alt="Wedding">
-      <img src="/image21.jpg" alt="Wedding">
-      <img src="/image1.jpg" alt="Wedding">
+      <img src="/image12.jpg" alt="Wedding">
       <img src="/image16.jpg" alt="Wedding">
+      <img src="/image20.jpg" alt="Wedding">
       <!-- duplicate -->
-      <img src="/image3.jpg" alt="Wedding">
-      <img src="/image21.jpg" alt="Wedding">
-      <img src="/image1.jpg" alt="Wedding">
+      <img src="/image4.jpg" alt="Wedding">
+      <img src="/image8.jpg" alt="Wedding">
+      <img src="/image12.jpg" alt="Wedding">
       <img src="/image16.jpg" alt="Wedding">
-    </div>
-  </div>
-
-  <!-- Column 4 - scrolls down slowly -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/image15.jpg" alt="Wedding">
-      <img src="/image5.jpg" alt="Wedding">
-      <img src="/IMG_7844.JPG" alt="Wedding">
-      <img src="/image18.jpg" alt="Wedding">
-      <!-- duplicate -->
-      <img src="/image15.jpg" alt="Wedding">
-      <img src="/image5.jpg" alt="Wedding">
-      <img src="/IMG_7844.JPG" alt="Wedding">
-      <img src="/image18.jpg" alt="Wedding">
-    </div>
-  </div>
-
-  <!-- Column 5 - scrolls up -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/image9.jpg" alt="Wedding">
-      <img src="/image7.jpg" alt="Wedding">
       <img src="/image20.jpg" alt="Wedding">
-      <img src="/image11.jpg" alt="Wedding">
-      <!-- duplicate -->
-      <img src="/image9.jpg" alt="Wedding">
-      <img src="/image7.jpg" alt="Wedding">
-      <img src="/image20.jpg" alt="Wedding">
-      <img src="/image11.jpg" alt="Wedding">
     </div>
   </div>
 
@@ -686,7 +685,7 @@
 <!-- QUOTE / THE DIFFERENCE -->
 <section class="quote-section">
   <p class="quote-label reveal">The difference</p>
-  <blockquote class="reveal delay-1">"The most important person at a wedding is the bride. The most important preparation she can do has nothing to do with the decor - it has everything to do with <em>her.</em>"</blockquote>
+  <blockquote class="reveal delay-1">"The most important person at a wedding is the bride.<br class="quote-br"> The most important preparation she can do has nothing to do with the decor - it has everything to do with <em>her.</em>"</blockquote>
   <p class="quote-attr reveal delay-2">- Mira, Founder of Wedding Essentials</p>
   <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link cta-link--white reveal delay-3">Start your journey</a>
 </section>
