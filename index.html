@@ -102,19 +102,18 @@
     }
     .hero-content {
       position: absolute;
-      bottom: 12%;
+      top: 65%;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
+      width: 90%;
       max-width: 860px;
-      padding: 0 24px;
       text-align: center;
       z-index: 2;
       animation: heroTextIn 0.8s ease-out 0.4s both;
     }
     @keyframes heroTextIn {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateX(-50%) translateY(14px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
     .hero-eyebrow {
       font-size: 11px;
@@ -126,7 +125,7 @@
     }
     .hero h1 {
       font-family: 'Caveat', cursive;
-      font-size: clamp(3.6rem, 7vw, 6.5rem);
+      font-size: clamp(2.4rem, 7vw, 6.5rem);
       font-weight: 400;
       line-height: 1.2;
       color: #fff;
@@ -189,40 +188,45 @@
     }
     .about .instagram-link:hover { border-color: #0a0a0a; }
 
-    /* PORTFOLIO SCROLL STRIP */
-    .portfolio-scroll-section {
-      background: #0a0a0a;
-      padding: 0;
+    /* PORTFOLIO VERTICAL SCROLL */
+    .portfolio-vertical-section {
+      height: 100vh;
       overflow: hidden;
-    }
-    .scroll-track-wrapper {
-      overflow: hidden;
-      width: 100%;
-      line-height: 0;
-    }
-    .scroll-track {
       display: flex;
-      gap: 3px;
-      width: max-content;
-      animation: scrollLeft 80s linear infinite;
+      gap: 4px;
+      background: #fff;
+      padding: 0;
     }
-    .scroll-track:hover { animation-play-state: paused; }
-    @keyframes scrollLeft {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .scroll-item {
-      height: 500px;
-      flex-shrink: 0;
+    .v-col {
+      flex: 1;
       overflow: hidden;
+      min-width: 0;
     }
-    .scroll-item img {
-      height: 100%;
-      width: auto;
+    .v-col-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .v-col-inner img {
+      width: 100%;
       display: block;
     }
+    .v-col:nth-child(1) .v-col-inner { animation: vScrollUp 28s linear infinite; }
+    .v-col:nth-child(2) .v-col-inner { animation: vScrollDown 34s linear infinite; }
+    .v-col:nth-child(3) .v-col-inner { animation: vScrollUp 22s linear infinite; }
+    .v-col:nth-child(4) .v-col-inner { animation: vScrollDown 38s linear infinite; }
+    .v-col:nth-child(5) .v-col-inner { animation: vScrollUp 30s linear infinite; }
+    @keyframes vScrollUp {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+    @keyframes vScrollDown {
+      from { transform: translateY(-50%); }
+      to   { transform: translateY(0); }
+    }
     @media (max-width: 900px) {
-      .scroll-item { height: 300px; }
+      .portfolio-vertical-section .v-col:nth-child(4),
+      .portfolio-vertical-section .v-col:nth-child(5) { display: none; }
     }
 
     /* QUOTE */
@@ -544,6 +548,7 @@
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       section { padding: 48px 24px; }
+      .hero-content { top: 60%; }
       .quote-section { padding: 56px 24px; }
       .footer-cta { padding: 40px 24px; }
       .faq { padding: 16px 24px 56px; }
@@ -598,49 +603,84 @@
   </div>
 </section>
 
-<!-- PORTFOLIO SCROLL STRIP -->
-<section class="portfolio-scroll-section" id="portfolio">
-  <div class="scroll-track-wrapper">
-    <div class="scroll-track">
-      <div class="scroll-item"><img src="/image2.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/IMG_7847.JPG" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image3.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image9.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image19.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image10.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image14.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image5.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image15.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image1.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image20.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image8.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image21.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image11.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image18.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image16.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/IMG_7844.JPG" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image7.jpg" alt="Wedding"></div>
+<!-- PORTFOLIO VERTICAL SCROLL -->
+<section class="portfolio-vertical-section" id="portfolio">
+
+  <!-- Column 1 - scrolls up slowly -->
+  <div class="v-col">
+    <div class="v-col-inner">
+      <img src="/image2.jpg" alt="Wedding">
+      <img src="/image11.jpg" alt="Wedding">
+      <img src="/image19.jpg" alt="Wedding">
+      <img src="/image8.jpg" alt="Wedding">
       <!-- duplicate for seamless loop -->
-      <div class="scroll-item"><img src="/image2.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/IMG_7847.JPG" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image3.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image9.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image19.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image10.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image14.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image5.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image15.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image1.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image20.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image8.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image21.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image11.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image18.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image16.jpg" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/IMG_7844.JPG" alt="Wedding"></div>
-      <div class="scroll-item"><img src="/image7.jpg" alt="Wedding"></div>
+      <img src="/image2.jpg" alt="Wedding">
+      <img src="/image11.jpg" alt="Wedding">
+      <img src="/image19.jpg" alt="Wedding">
+      <img src="/image8.jpg" alt="Wedding">
     </div>
   </div>
+
+  <!-- Column 2 - scrolls down -->
+  <div class="v-col">
+    <div class="v-col-inner">
+      <img src="/IMG_7847.JPG" alt="Wedding">
+      <img src="/image10.jpg" alt="Wedding">
+      <img src="/image20.jpg" alt="Wedding">
+      <img src="/image14.jpg" alt="Wedding">
+      <!-- duplicate -->
+      <img src="/IMG_7847.JPG" alt="Wedding">
+      <img src="/image10.jpg" alt="Wedding">
+      <img src="/image20.jpg" alt="Wedding">
+      <img src="/image14.jpg" alt="Wedding">
+    </div>
+  </div>
+
+  <!-- Column 3 - scrolls up fast -->
+  <div class="v-col">
+    <div class="v-col-inner">
+      <img src="/image3.jpg" alt="Wedding">
+      <img src="/image21.jpg" alt="Wedding">
+      <img src="/image1.jpg" alt="Wedding">
+      <img src="/image16.jpg" alt="Wedding">
+      <!-- duplicate -->
+      <img src="/image3.jpg" alt="Wedding">
+      <img src="/image21.jpg" alt="Wedding">
+      <img src="/image1.jpg" alt="Wedding">
+      <img src="/image16.jpg" alt="Wedding">
+    </div>
+  </div>
+
+  <!-- Column 4 - scrolls down slowly -->
+  <div class="v-col">
+    <div class="v-col-inner">
+      <img src="/image15.jpg" alt="Wedding">
+      <img src="/image5.jpg" alt="Wedding">
+      <img src="/IMG_7844.JPG" alt="Wedding">
+      <img src="/image18.jpg" alt="Wedding">
+      <!-- duplicate -->
+      <img src="/image15.jpg" alt="Wedding">
+      <img src="/image5.jpg" alt="Wedding">
+      <img src="/IMG_7844.JPG" alt="Wedding">
+      <img src="/image18.jpg" alt="Wedding">
+    </div>
+  </div>
+
+  <!-- Column 5 - scrolls up -->
+  <div class="v-col">
+    <div class="v-col-inner">
+      <img src="/image9.jpg" alt="Wedding">
+      <img src="/image7.jpg" alt="Wedding">
+      <img src="/image20.jpg" alt="Wedding">
+      <img src="/image11.jpg" alt="Wedding">
+      <!-- duplicate -->
+      <img src="/image9.jpg" alt="Wedding">
+      <img src="/image7.jpg" alt="Wedding">
+      <img src="/image20.jpg" alt="Wedding">
+      <img src="/image11.jpg" alt="Wedding">
+    </div>
+  </div>
+
 </section>
 
 <!-- QUOTE / THE DIFFERENCE -->
@@ -675,7 +715,6 @@
 <!-- WHAT WE DO -->
 <section class="services-section" id="services">
   <div class="services-header reveal">
-    <span class="label">What we do</span>
     <h2>What we do</h2>
     <p class="services-sub">Different services. One purpose.</p>
   </div>
