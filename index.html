@@ -72,8 +72,8 @@
     /* HERO */
     .hero {
       position: relative;
-      height: 100vh;
-      min-height: 600px;
+      height: 115vh;
+      min-height: 690px;
       overflow: hidden;
     }
     .hero-bg {
@@ -102,9 +102,9 @@
     }
     .hero-content {
       position: absolute;
-      top: 52%;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
       width: 90%;
       max-width: 860px;
       text-align: center;
@@ -112,8 +112,8 @@
       animation: heroTextIn 0.8s ease-out 0.4s both;
     }
     @keyframes heroTextIn {
-      from { opacity: 0; transform: translateX(-50%) translateY(14px); }
-      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+      from { opacity: 0; transform: translate(-50%, calc(-50% + 14px)); }
+      to   { opacity: 1; transform: translate(-50%, -50%); }
     }
     .hero-eyebrow {
       font-size: 11px;
@@ -130,7 +130,7 @@
       line-height: 1.2;
       color: #fff;
       letter-spacing: 0;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
     .hero-scroll {
       position: absolute;
@@ -188,44 +188,50 @@
     }
     .about .instagram-link:hover { border-color: #0a0a0a; }
 
-    /* PORTFOLIO VERTICAL SCROLL */
-    .portfolio-vertical-section {
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      gap: 4px;
+    /* PORTFOLIO GRID SLIDESHOW */
+    .portfolio-grid-section {
       background: #fff;
       padding: 0;
-    }
-    .v-col {
-      flex: 1;
       overflow: hidden;
-      min-width: 0;
     }
-    .v-col-inner {
+    .portfolio-grid-wrapper {
+      width: 100%;
+      height: 80vh;
+      min-height: 480px;
+      overflow: hidden;
+      position: relative;
+    }
+    .portfolio-slides-container {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
     }
-    .v-col-inner img {
+    .portfolio-slide {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 3px;
       width: 100%;
+      height: 80vh;
+      min-height: 480px;
+      flex-shrink: 0;
+    }
+    .portfolio-slide a {
       display: block;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
     }
-    .v-col:nth-child(1) .v-col-inner { animation: vScrollUp 58s linear infinite; }
-    .v-col:nth-child(2) .v-col-inner { animation: vScrollDown 72s linear infinite; }
-    .v-col:nth-child(3) .v-col-inner { animation: vScrollUp 48s linear infinite; }
-    .v-col:nth-child(4) .v-col-inner { animation: vScrollDown 65s linear infinite; }
-    @keyframes vScrollUp {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-50%); }
+    .portfolio-slide a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.4s ease;
     }
-    @keyframes vScrollDown {
-      from { transform: translateY(-50%); }
-      to   { transform: translateY(0); }
-    }
-    @media (max-width: 900px) {
-      .portfolio-vertical-section .v-col:nth-child(4) { display: none; }
-    }
+    .portfolio-slide a:hover img { transform: scale(1.03); }
 
     /* QUOTE */
     .quote-section {
@@ -548,7 +554,6 @@
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       section { padding: 48px 24px; }
-      .hero-content { top: 60%; }
       .quote-section { padding: 56px 24px; }
       .footer-cta { padding: 40px 24px; }
       .faq { padding: 16px 24px 56px; }
@@ -561,6 +566,8 @@
       footer { padding: 36px 24px; }
       .footer-bottom-row { flex-direction: column; gap: 24px; text-align: center; }
       .footer-socials-col { align-items: center; }
+      .portfolio-grid-wrapper,
+      .portfolio-slide { height: 60vh; min-height: 360px; }
     }
   </style>
 </head>
@@ -603,83 +610,55 @@
   </div>
 </section>
 
-<!-- PORTFOLIO VERTICAL SCROLL -->
-<section class="portfolio-vertical-section" id="portfolio">
+<!-- PORTFOLIO GRID SLIDESHOW -->
+<section class="portfolio-grid-section" id="portfolio">
+  <div class="portfolio-grid-wrapper">
+    <div class="portfolio-slides-container" id="portfolioSlides">
 
-  <!-- Column 1 - scrolls up 58s -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/image1.jpg" alt="Wedding">
-      <img src="/image5.jpg" alt="Wedding">
-      <img src="/image9.jpg" alt="Wedding">
-      <img src="/image13.jpg" alt="Wedding">
-      <img src="/image17.jpg" alt="Wedding">
-      <img src="/image21.jpg" alt="Wedding">
-      <!-- duplicate for seamless loop -->
-      <img src="/image1.jpg" alt="Wedding">
-      <img src="/image5.jpg" alt="Wedding">
-      <img src="/image9.jpg" alt="Wedding">
-      <img src="/image13.jpg" alt="Wedding">
-      <img src="/image17.jpg" alt="Wedding">
-      <img src="/image21.jpg" alt="Wedding">
+      <div class="portfolio-slide">
+        <a href="/image1.jpg" target="_blank"><img src="/image1.jpg" alt="Wedding"></a>
+        <a href="/image2.jpg" target="_blank"><img src="/image2.jpg" alt="Wedding"></a>
+        <a href="/image3.jpg" target="_blank"><img src="/image3.jpg" alt="Wedding"></a>
+        <a href="/image4.jpg" target="_blank"><img src="/image4.jpg" alt="Wedding"></a>
+      </div>
+
+      <div class="portfolio-slide">
+        <a href="/image5.jpg" target="_blank"><img src="/image5.jpg" alt="Wedding"></a>
+        <a href="/image6.jpg" target="_blank"><img src="/image6.jpg" alt="Wedding"></a>
+        <a href="/image7.jpg" target="_blank"><img src="/image7.jpg" alt="Wedding"></a>
+        <a href="/image8.jpg" target="_blank"><img src="/image8.jpg" alt="Wedding"></a>
+      </div>
+
+      <div class="portfolio-slide">
+        <a href="/image9.jpg" target="_blank"><img src="/image9.jpg" alt="Wedding"></a>
+        <a href="/image10.jpg" target="_blank"><img src="/image10.jpg" alt="Wedding"></a>
+        <a href="/image11.jpg" target="_blank"><img src="/image11.jpg" alt="Wedding"></a>
+        <a href="/image12.jpg" target="_blank"><img src="/image12.jpg" alt="Wedding"></a>
+      </div>
+
+      <div class="portfolio-slide">
+        <a href="/image13.jpg" target="_blank"><img src="/image13.jpg" alt="Wedding"></a>
+        <a href="/image14.jpg" target="_blank"><img src="/image14.jpg" alt="Wedding"></a>
+        <a href="/image15.jpg" target="_blank"><img src="/image15.jpg" alt="Wedding"></a>
+        <a href="/image16.jpg" target="_blank"><img src="/image16.jpg" alt="Wedding"></a>
+      </div>
+
+      <div class="portfolio-slide">
+        <a href="/image17.jpg" target="_blank"><img src="/image17.jpg" alt="Wedding"></a>
+        <a href="/image18.jpg" target="_blank"><img src="/image18.jpg" alt="Wedding"></a>
+        <a href="/image19.jpg" target="_blank"><img src="/image19.jpg" alt="Wedding"></a>
+        <a href="/image20.jpg" target="_blank"><img src="/image20.jpg" alt="Wedding"></a>
+      </div>
+
+      <div class="portfolio-slide">
+        <a href="/image21.jpg" target="_blank"><img src="/image21.jpg" alt="Wedding"></a>
+        <a href="/IMG_7844.JPG" target="_blank"><img src="/IMG_7844.JPG" alt="Wedding"></a>
+        <a href="/IMG_7847.JPG" target="_blank"><img src="/IMG_7847.JPG" alt="Wedding"></a>
+        <a href="/image1.jpg" target="_blank"><img src="/image1.jpg" alt="Wedding"></a>
+      </div>
+
     </div>
   </div>
-
-  <!-- Column 2 - scrolls down 72s -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/image2.jpg" alt="Wedding">
-      <img src="/image6.jpg" alt="Wedding">
-      <img src="/image10.jpg" alt="Wedding">
-      <img src="/image14.jpg" alt="Wedding">
-      <img src="/image18.jpg" alt="Wedding">
-      <img src="/IMG_7847.JPG" alt="Wedding">
-      <!-- duplicate -->
-      <img src="/image2.jpg" alt="Wedding">
-      <img src="/image6.jpg" alt="Wedding">
-      <img src="/image10.jpg" alt="Wedding">
-      <img src="/image14.jpg" alt="Wedding">
-      <img src="/image18.jpg" alt="Wedding">
-      <img src="/IMG_7847.JPG" alt="Wedding">
-    </div>
-  </div>
-
-  <!-- Column 3 - scrolls up 48s -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/image3.jpg" alt="Wedding">
-      <img src="/image7.jpg" alt="Wedding">
-      <img src="/image11.jpg" alt="Wedding">
-      <img src="/image15.jpg" alt="Wedding">
-      <img src="/image19.jpg" alt="Wedding">
-      <img src="/IMG_7844.JPG" alt="Wedding">
-      <!-- duplicate -->
-      <img src="/image3.jpg" alt="Wedding">
-      <img src="/image7.jpg" alt="Wedding">
-      <img src="/image11.jpg" alt="Wedding">
-      <img src="/image15.jpg" alt="Wedding">
-      <img src="/image19.jpg" alt="Wedding">
-      <img src="/IMG_7844.JPG" alt="Wedding">
-    </div>
-  </div>
-
-  <!-- Column 4 - scrolls down 65s -->
-  <div class="v-col">
-    <div class="v-col-inner">
-      <img src="/image4.jpg" alt="Wedding">
-      <img src="/image8.jpg" alt="Wedding">
-      <img src="/image12.jpg" alt="Wedding">
-      <img src="/image16.jpg" alt="Wedding">
-      <img src="/image20.jpg" alt="Wedding">
-      <!-- duplicate -->
-      <img src="/image4.jpg" alt="Wedding">
-      <img src="/image8.jpg" alt="Wedding">
-      <img src="/image12.jpg" alt="Wedding">
-      <img src="/image16.jpg" alt="Wedding">
-      <img src="/image20.jpg" alt="Wedding">
-    </div>
-  </div>
-
 </section>
 
 <!-- QUOTE / THE DIFFERENCE -->
@@ -883,6 +862,24 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Portfolio grid slideshow
+  (function() {
+    const container = document.getElementById('portfolioSlides');
+    const wrapper = container && container.parentElement;
+    if (!container || !wrapper) return;
+    const slides = container.querySelectorAll('.portfolio-slide');
+    const total = slides.length;
+    let current = 0;
+
+    function goTo(idx) {
+      current = idx;
+      container.style.transform = 'translateY(-' + (current * wrapper.offsetHeight) + 'px)';
+    }
+
+    setInterval(function() { goTo((current + 1) % total); }, 3000);
+    window.addEventListener('resize', function() { goTo(current); });
+  })();
 </script>
 </body>
 </html>
