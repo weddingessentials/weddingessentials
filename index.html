@@ -74,10 +74,6 @@
       position: relative;
       height: 100vh;
       min-height: 600px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      text-align: center;
       overflow: hidden;
     }
     .hero-bg {
@@ -89,7 +85,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.55) 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.6) 100%);
       z-index: 1;
     }
     .hero-bg img {
@@ -105,10 +101,15 @@
       to   { transform: scale(1.0);  filter: brightness(1);   }
     }
     .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 24px 15vh;
+      position: absolute;
+      bottom: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
       max-width: 860px;
+      padding: 0 24px;
+      text-align: center;
+      z-index: 2;
       animation: heroTextIn 0.8s ease-out 0.4s both;
     }
     @keyframes heroTextIn {
@@ -188,29 +189,41 @@
     }
     .about .instagram-link:hover { border-color: #0a0a0a; }
 
-    /* PORTFOLIO MASONRY */
-    .portfolio-masonry-section {
+    /* PORTFOLIO SCROLL STRIP */
+    .portfolio-scroll-section {
       background: #0a0a0a;
       padding: 0;
-      display: block;
-    }
-    .masonry-grid {
-      columns: 2;
-      column-gap: 3px;
-      width: 100%;
-    }
-    .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 3px;
       overflow: hidden;
-      display: block;
     }
-    .masonry-item img {
+    .scroll-track-wrapper {
+      overflow: hidden;
       width: 100%;
-      display: block;
-      transition: transform 0.5s ease;
+      line-height: 0;
     }
-    .masonry-item:hover img { transform: scale(1.04); }
+    .scroll-track {
+      display: flex;
+      gap: 3px;
+      width: max-content;
+      animation: scrollLeft 80s linear infinite;
+    }
+    .scroll-track:hover { animation-play-state: paused; }
+    @keyframes scrollLeft {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .scroll-item {
+      height: 500px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .scroll-item img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .scroll-item { height: 300px; }
+    }
 
     /* QUOTE */
     .quote-section {
@@ -305,7 +318,7 @@
     }
 
     /* SERVICES */
-    .services-section { background: #fff; padding: 72px 60px; }
+    .services-section { background: #fff; padding: 72px 60px 40px; }
     .services-header { text-align: center; margin-bottom: 48px; }
     .services-header .label {
       font-size: 11px;
@@ -332,7 +345,7 @@
       border-top: 1px solid rgba(0,0,0,0.1);
       padding: 40px 0;
       display: grid;
-      grid-template-columns: 48px 1fr auto;
+      grid-template-columns: 48px 1fr;
       gap: 32px;
       align-items: start;
     }
@@ -353,7 +366,7 @@
     .service-body p { font-size: 14px; line-height: 1.85; color: #777; }
 
     /* FAQ */
-    .faq { background: #fff; padding: 72px 60px; }
+    .faq { background: #fff; padding: 32px 60px 72px; }
     .faq-inner { max-width: 760px; width: 100%; margin: 0 auto; }
     .faq-header { text-align: center; margin-bottom: 48px; }
     .faq-header .label {
@@ -407,7 +420,7 @@
 
     /* BRIDAL PRESENCE GUIDE */
     .bridal-guide {
-      background: #1a1a18;
+      background: #000;
       color: #fff;
       padding: 80px 60px;
       text-align: center;
@@ -531,16 +544,14 @@
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       section { padding: 48px 24px; }
-      .hero-content { padding: 0 20px 14vh; }
       .quote-section { padding: 56px 24px; }
       .footer-cta { padding: 40px 24px; }
-      .faq { padding: 56px 24px; }
+      .faq { padding: 16px 24px 56px; }
       .founders { padding: 56px 24px; }
       .founders-grid { grid-template-columns: 1fr; gap: 36px; }
       .founders-img { order: -1; }
-      .services-section { padding: 56px 24px; }
+      .services-section { padding: 56px 24px 28px; }
       .service-item { grid-template-columns: 36px 1fr; }
-      .service-item .cta-link { display: none; }
       .bridal-guide { padding: 56px 24px; }
       footer { padding: 36px 24px; }
       .footer-bottom-row { flex-direction: column; gap: 24px; text-align: center; }
@@ -587,27 +598,48 @@
   </div>
 </section>
 
-<!-- PORTFOLIO MASONRY -->
-<section class="portfolio-masonry-section" id="portfolio">
-  <div class="masonry-grid">
-    <div class="masonry-item"><img src="/image2.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/IMG_7847.JPG" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image3.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image9.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image19.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image10.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image14.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image5.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image15.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image1.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image20.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image8.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image21.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image11.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image18.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image16.jpg" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/IMG_7844.JPG" alt="Wedding"></div>
-    <div class="masonry-item"><img src="/image7.jpg" alt="Wedding"></div>
+<!-- PORTFOLIO SCROLL STRIP -->
+<section class="portfolio-scroll-section" id="portfolio">
+  <div class="scroll-track-wrapper">
+    <div class="scroll-track">
+      <div class="scroll-item"><img src="/image2.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/IMG_7847.JPG" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image3.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image9.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image19.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image10.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image14.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image5.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image15.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image1.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image20.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image8.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image21.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image11.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image18.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image16.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/IMG_7844.JPG" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image7.jpg" alt="Wedding"></div>
+      <!-- duplicate for seamless loop -->
+      <div class="scroll-item"><img src="/image2.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/IMG_7847.JPG" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image3.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image9.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image19.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image10.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image14.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image5.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image15.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image1.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image20.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image8.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image21.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image11.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image18.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image16.jpg" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/IMG_7844.JPG" alt="Wedding"></div>
+      <div class="scroll-item"><img src="/image7.jpg" alt="Wedding"></div>
+    </div>
   </div>
 </section>
 
@@ -661,7 +693,6 @@
         You arrive as the bride.<br>
         We handle everything else.</p>
       </div>
-      <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link">Enquire</a>
     </div>
 
     <div class="service-item reveal">
@@ -670,7 +701,6 @@
         <h3>Bridal Assistants</h3>
         <p>The dress that needs holding before you walk in. The touch-up between outfit changes. The quiet voice that tells you everything is going as planned. Our bridal assistants are trained, calm, and completely dedicated to you.</p>
       </div>
-      <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link">Enquire</a>
     </div>
 
     <div class="service-item reveal">
@@ -679,7 +709,6 @@
         <h3>Catwalk &amp; Confidence Training</h3>
         <p>Those twenty seconds when every person who loves you turns to look - have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.</p>
       </div>
-      <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link">Book a session</a>
     </div>
 
     <div class="service-item reveal">
@@ -688,7 +717,6 @@
         <h3>Content Creation</h3>
         <p>Not staged. Not filtered beyond recognition. Our content creators move through your day with intention - capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.</p>
       </div>
-      <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link">Enquire</a>
     </div>
 
     <div class="service-item reveal">
@@ -697,7 +725,6 @@
         <h3>Polaroid Service</h3>
         <p>In a world of digital everything, there is something extraordinary about a photograph you can hold in your hands the same night it was taken. Our Polaroid service captures the candid, the tender, and the in-between.</p>
       </div>
-      <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link">Enquire</a>
     </div>
 
   </div>
@@ -803,10 +830,6 @@
     <div>
       <a href="#" class="footer-logo">Wedding Essentials</a>
       <span class="footer-tagline">Dubai, UAE</span>
-    </div>
-    <div class="footer-socials-col">
-      <a href="https://wa.me/971506881534" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="https://instagram.com/weddingessentials.me" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
   <p class="footer-copy">© 2025 Wedding Essentials. All rights reserved.</p>
