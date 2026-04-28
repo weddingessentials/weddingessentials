@@ -73,6 +73,20 @@ export default async function Home() {
     getImage('guide_pdf', 'https://raw.githubusercontent.com/weddingessentials/weddingessentials/main/The%20Bridal%20Presence%20Guide%20by%20Esmeerah%E2%9C%A8.pdf'),
   ])
 
+  // Fetch portfolio images (01–21) with fallbacks
+  const defaultPortfolio = [
+    '/image1.jpg','/image2.jpg','/image3.jpg','/image4.png','/image5.jpg','/image6.png',
+    '/image7.jpg','/image8.jpg','/image9.jpg','/image10.jpg','/image11.jpg','/image12.png',
+    '/image13.png','/image14.jpg','/image15.jpg','/image16.jpg','/image18.jpg',
+    '/image19.jpg','/image20.jpg','/image21.jpg','/IMG_7844.JPG',
+  ]
+  const portfolioResults = await Promise.all(
+    Array.from({ length: 21 }, (_, i) =>
+      getImage(`portfolio_${String(i + 1).padStart(2, '0')}`, defaultPortfolio[i] ?? '/image1.jpg')
+    )
+  )
+  const portfolioImages = portfolioResults
+
   const waLink = `https://wa.me/${whatsappNumber}`
   const igLink = `https://instagram.com/${instagramHandle}`
 
@@ -119,7 +133,7 @@ export default async function Home() {
       </section>
 
       {/* PORTFOLIO FILM ROLL */}
-      <PortfolioFilm />
+      <PortfolioFilm images={portfolioImages} />
 
       {/* QUOTE */}
       <section className="quote-section">

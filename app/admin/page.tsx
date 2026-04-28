@@ -37,6 +37,9 @@ const IMAGE_LABELS: Record<string, string> = {
   hero_image:    'Hero background image',
   founder_photo: 'Founder / About photo',
   guide_pdf:     'Bridal Guide PDF (upload new PDF file)',
+  ...Object.fromEntries(
+    Array.from({ length: 21 }, (_, i) => [`portfolio_${String(i + 1).padStart(2, '0')}`, `Photo ${i + 1}`])
+  ),
 }
 
 const s: Record<string, React.CSSProperties> = {
@@ -202,8 +205,10 @@ function ImagesTab() {
     setUploading(prev => ({ ...prev, [id]: false }))
   }
 
-  const orderedIds = ['hero_image', 'founder_photo', 'guide_pdf']
-  const displayRows = orderedIds.map(id => rows.find(r => r.id === id) ?? { id, url: '' })
+  const mainIds = ['hero_image', 'founder_photo', 'guide_pdf']
+  const portfolioIds = Array.from({ length: 21 }, (_, i) => `portfolio_${String(i + 1).padStart(2, '0')}`)
+  const allIds = [...mainIds, ...portfolioIds]
+  const displayRows = allIds.map(id => rows.find(r => r.id === id) ?? { id, url: '' })
 
   return (
     <div style={s.content}>
@@ -214,13 +219,19 @@ function ImagesTab() {
         const isPdf = row.id === 'guide_pdf'
         const label = IMAGE_LABELS[row.id] ?? row.id
         const isImg = !isPdf && row.url && (row.url.startsWith('/') || row.url.startsWith('http'))
-        return (
-          <div key={row.id} style={s.imgCard}>
+        const isPortfolio = row.id.startsWith('portfolio_')
+      const sectionBreak = isPortfolio && row.id === 'portfolio_01'
+      return (
+        <div key={row.id}>
+        {sectionBreak && (
+          <p style={{ ...s.sectionHead, marginTop: 48 }}>Portfolio Images (21 photos in carousel)</p>
+        )}
+          <div style={{ ...s.imgCard, ...(isPortfolio ? { display: 'inline-flex', flexDirection: 'column' as const, width: 'calc(33% - 8px)', margin: '0 4px 8px 0', verticalAlign: 'top', padding: 16 } : {}) }}>
             <span style={s.imgLabel}>{label}</span>
             {row.url && <p style={s.currentUrl}>Current: {row.url}</p>}
             {isImg && (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={row.url} alt={row.id} style={s.imgPreview} />
+              <img src={row.url} alt={row.id} style={isPortfolio ? { ...s.imgPreview, width: '100%', height: 80 } : s.imgPreview} />
             )}
             {isPdf && row.url && (
               <p style={{ fontSize: 12, color: '#c9a87c', marginBottom: 12 }}>
@@ -247,6 +258,7 @@ function ImagesTab() {
               {saved[row.id] && <span style={s.savedMsg}>Updated ✓</span>}
             </div>
           </div>
+        </div>
         )
       })}
     </div>

@@ -1,25 +1,13 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
-const desktopSlides = [
-  ['/image1.jpg', '/image2.jpg', '/image3.jpg', '/image4.png', '/image5.jpg', '/image6.png'],
-  ['/image7.jpg', '/image8.jpg', '/image9.jpg', '/image10.jpg', '/image11.jpg', '/image12.png'],
-  ['/image13.png', '/image14.jpg', '/image15.jpg', '/image16.jpg', '/image2.jpg', '/image18.jpg'],
-  ['/image19.jpg', '/image20.jpg', '/image21.jpg', '/IMG_7844.JPG', '/IMG_7847.JPG', '/image1.jpg'],
-]
+function chunk<T>(arr: T[], size: number): T[][] {
+  const out: T[][] = []
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size))
+  return out
+}
 
-const mobileSlides = [
-  ['/image1.jpg', '/image2.jpg', '/image3.jpg'],
-  ['/image4.png', '/image5.jpg', '/image6.png'],
-  ['/image7.jpg', '/image8.jpg', '/image9.jpg'],
-  ['/image10.jpg', '/image11.jpg', '/image12.png'],
-  ['/image13.png', '/image14.jpg', '/image15.jpg'],
-  ['/image16.jpg', '/image2.jpg', '/image18.jpg'],
-  ['/image19.jpg', '/image20.jpg', '/image21.jpg'],
-  ['/IMG_7844.JPG', '/IMG_7847.JPG', '/image1.jpg'],
-]
-
-function Slideshow({ slides, wrapperClass, slideClass }: { slides: string[][], wrapperClass: string, slideClass: string }) {
+function Slideshow({ slides, wrapperClass }: { slides: string[][], wrapperClass: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const currentRef = useRef(0)
@@ -28,27 +16,21 @@ function Slideshow({ slides, wrapperClass, slideClass }: { slides: string[][], w
     const container = containerRef.current
     const wrapper = wrapperRef.current
     if (!container || !wrapper) return
-
     const goTo = (idx: number) => {
       currentRef.current = ((idx % slides.length) + slides.length) % slides.length
       container.style.transform = `translateY(-${currentRef.current * wrapper.offsetHeight}px)`
     }
-
     const interval = setInterval(() => goTo(currentRef.current + 1), 4000)
     const onResize = () => goTo(0)
     window.addEventListener('resize', onResize)
-
-    return () => {
-      clearInterval(interval)
-      window.removeEventListener('resize', onResize)
-    }
+    return () => { clearInterval(interval); window.removeEventListener('resize', onResize) }
   }, [slides.length])
 
   return (
     <div ref={wrapperRef} className={`portfolio-film-wrapper ${wrapperClass}`}>
       <div ref={containerRef} className="portfolio-film-slides">
         {slides.map((row, i) => (
-          <div key={i} className={`portfolio-film-slide ${slideClass}`}>
+          <div key={i} className="portfolio-film-slide">
             {row.map((src, j) => (
               <a key={j} href={src} target="_blank" rel="noopener">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -62,11 +44,15 @@ function Slideshow({ slides, wrapperClass, slideClass }: { slides: string[][], w
   )
 }
 
-export default function PortfolioFilm() {
+export default function PortfolioFilm({ images }: { images: string[] }) {
+  // Desktop: 6 per row, Mobile: 3 per row
+  const desktop = chunk(images, 6)
+  const mobile = chunk(images, 3)
+
   return (
     <section className="portfolio-film-section" id="portfolio">
-      <Slideshow slides={desktopSlides} wrapperClass="portfolio-film-desktop" slideClass="" />
-      <Slideshow slides={mobileSlides} wrapperClass="portfolio-film-mobile" slideClass="" />
+      <Slideshow slides={desktop} wrapperClass="portfolio-film-desktop" />
+      <Slideshow slides={mobile} wrapperClass="portfolio-film-mobile" />
     </section>
   )
 }
