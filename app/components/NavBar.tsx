@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-export default function NavBar() {
+export default function NavBar({ waLink }: { waLink: string }) {
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function NavBar() {
       <a href="#" className="nav-logo">Wedding Essentials</a>
       <div className="nav-actions">
         <a href="#portfolio" className="nav-btn">PORTFOLIO</a>
-        <a href="https://wa.me/971506881534" target="_blank" rel="noopener" className="nav-btn">ENQUIRE</a>
+        <a href={waLink} target="_blank" rel="noopener" className="nav-btn">ENQUIRE</a>
       </div>
     </nav>
   )

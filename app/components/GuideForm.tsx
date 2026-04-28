@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 
-export default function GuideForm() {
+export default function GuideForm({ pdfUrl }: { pdfUrl: string }) {
   const [submitted, setSubmitted] = useState(false)
   const [submittedName, setSubmittedName] = useState('')
 
@@ -15,16 +15,14 @@ export default function GuideForm() {
 
     if (!name || !email || !phone) return
 
-    // Trigger PDF download
     const link = document.createElement('a')
-    link.href = 'https://raw.githubusercontent.com/zusmann/weddingessentials/main/The%20Bridal%20Presence%20Guide%20by%20Esmeerah%E2%9C%A8.pdf'
+    link.href = pdfUrl
     link.download = 'The Bridal Presence Guide.pdf'
     link.style.display = 'none'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
 
-    // Background POST
     fetch('/api/send-guide', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

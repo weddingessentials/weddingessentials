@@ -13,35 +13,72 @@ async function getContent(id: string, fallback: string): Promise<string> {
   }
 }
 
-export default async function Home() {
-  async function getImage(id: string, fallback: string): Promise<string> {
-    try {
-      const { data } = await supabase.from('images').select('url').eq('id', id).single()
-      return data?.url ?? fallback
-    } catch {
-      return fallback
-    }
+async function getImage(id: string, fallback: string): Promise<string> {
+  try {
+    const { data } = await supabase.from('images').select('url').eq('id', id).single()
+    return data?.url ?? fallback
+  } catch {
+    return fallback
   }
+}
 
+export default async function Home() {
   const [
     heroHeadline,
+    heroEyebrow,
+    aboutHeadline,
+    aboutBody,
     differenceQuote,
+    founderLabel,
     founderHeadline,
+    founderBody1,
+    founderBody2,
+    founderBody3,
+    guideLabel,
+    guideHeadline,
+    guideSub,
+    guideBody1,
+    guideBody2,
+    guideBody3,
+    footerCtaLabel,
     footerText,
+    whatsappNumber,
+    instagramHandle,
     heroImage,
     founderPhoto,
+    guidePdf,
   ] = await Promise.all([
     getContent('hero_headline', 'We change the energy in the room.'),
+    getContent('hero_eyebrow', 'Wedding Essentials · Dubai, UAE'),
+    getContent('about_headline', 'Wedding Essentials is a niche wedding service dedicated exclusively to Brides.'),
+    getContent('about_body', 'Our services include Wedding Management, Bridal Assistance, Bridal Catwalk & Confidence Training, and every detail in between — for the bride who refuses to leave anything to chance.'),
     getContent('difference_quote', 'The most important person at a wedding is the bride. The most important preparation she can do has nothing to do with the decor - it has everything to do with her.'),
+    getContent('founder_label', 'The woman behind Wedding Essentials'),
     getContent('founder_headline', 'I built Wedding Essentials to close the gap between what a wedding looks like and what it feels like. Between the bride who hopes it goes well and the one who knows it will. Between the day that passes in a blur and the one that is lived:'),
+    getContent('founder_body_1', 'My name is Mira. I am a Wedding Expert & Bridal Confidence Coach.'),
+    getContent('founder_body_2', 'For years I watched brides manage their weddings rather than experience them — present in body, but slightly outside of the moment.'),
+    getContent('founder_body_3', 'I work with brides across the Gulf and beyond to change that. Through presence training, on-the-day coordination & dedicated only to you professional bridal assistants, I ensure that the most important day of your life is one you actually live through — completely, consciously, from the first moment to the last.'),
+    getContent('guide_label', 'A gift for you'),
+    getContent('guide_headline', 'Before you plan another detail — read this.'),
+    getContent('guide_sub', 'The Bridal Presence Guide: 7 things every bride should know before she walks in.'),
+    getContent('guide_body_1', 'This is not a checklist. It is not a list of tips.'),
+    getContent('guide_body_2', 'It is the beginning of the conversation I have with every bride I work with personally — the one that changes how she thinks about her wedding day, her entrance, and herself.'),
+    getContent('guide_body_3', 'Free. Yours. And more honest than most things you will read about weddings.'),
+    getContent('footer_cta_label', 'Get in touch'),
     getContent('footer_text', 'Every wedding begins with a conversation.'),
+    getContent('whatsapp_number', '971506881534'),
+    getContent('instagram_handle', 'weddingessentials.me'),
     getImage('hero_image', '/12300.jpg'),
     getImage('founder_photo', '/esmeerah.jpg'),
+    getImage('guide_pdf', 'https://raw.githubusercontent.com/weddingessentials/weddingessentials/main/The%20Bridal%20Presence%20Guide%20by%20Esmeerah%E2%9C%A8.pdf'),
   ])
+
+  const waLink = `https://wa.me/${whatsappNumber}`
+  const igLink = `https://instagram.com/${instagramHandle}`
 
   return (
     <>
-      <NavBar />
+      <NavBar waLink={waLink} />
 
       {/* HERO */}
       <section className="hero">
@@ -50,9 +87,9 @@ export default async function Home() {
           <img src={heroImage} alt="Wedding Essentials - Dubai" />
         </div>
         <div className="hero-content">
-          <p className="hero-eyebrow">Wedding Essentials · Dubai, UAE</p>
+          <p className="hero-eyebrow">{heroEyebrow}</p>
           <h1>{heroHeadline}</h1>
-          <a href="https://wa.me/971506881534" target="_blank" rel="noopener" className="cta-link cta-link--white">
+          <a href={waLink} target="_blank" rel="noopener" className="cta-link cta-link--white">
             Book a consultation
           </a>
         </div>
@@ -67,23 +104,16 @@ export default async function Home() {
       <section className="about" id="about">
         <div className="section-inner">
           <Reveal tag="p" className="about-label">Who Are We?</Reveal>
-          <Reveal tag="h2" delay="delay-1">
-            Wedding Essentials is a niche wedding service dedicated exclusively to Brides.
-          </Reveal>
+          <Reveal tag="h2" delay="delay-1">{aboutHeadline}</Reveal>
           <Reveal tag="p" delay="delay-2">
             Created by{' '}
-            <a href="https://www.instagram.com/esmeerah" target="_blank" rel="noopener" className="instagram-link">
+            <a href={igLink} target="_blank" rel="noopener" className="instagram-link">
               @esmeerah
             </a>
           </Reveal>
-          <Reveal tag="p" delay="delay-2">
-            Our services include Wedding Management, Bridal Assistance, Bridal Catwalk &amp; Confidence Training,
-            and every detail in between — for the bride who refuses to leave anything to chance.
-          </Reveal>
+          <Reveal tag="p" delay="delay-2">{aboutBody}</Reveal>
           <Reveal delay="delay-3">
-            <a href="https://wa.me/971506881534" target="_blank" rel="noopener" className="cta-link">
-              Work with us
-            </a>
+            <a href={waLink} target="_blank" rel="noopener" className="cta-link">Work with us</a>
           </Reveal>
         </div>
       </section>
@@ -95,14 +125,11 @@ export default async function Home() {
       <section className="quote-section">
         <Reveal tag="p" className="quote-label">The difference</Reveal>
         <Reveal tag="blockquote" delay="delay-1">
-          &ldquo;{differenceQuote.split('her.')[0]}
-          <em>her.</em>&rdquo;
+          &ldquo;{differenceQuote.replace('her.', '')}<em>her.</em>&rdquo;
         </Reveal>
         <Reveal tag="p" className="quote-attr" delay="delay-2">- Mira, Founder of Wedding Essentials</Reveal>
         <Reveal delay="delay-3">
-          <a href="https://wa.me/971506881534" target="_blank" rel="noopener" className="cta-link cta-link--white">
-            Start your journey
-          </a>
+          <a href={waLink} target="_blank" rel="noopener" className="cta-link cta-link--white">Start your journey</a>
         </Reveal>
       </section>
 
@@ -110,26 +137,16 @@ export default async function Home() {
       <section className="founders">
         <div className="founders-grid">
           <Reveal className="founders-text">
-            <span className="label">The woman behind Wedding Essentials</span>
+            <span className="label">{founderLabel}</span>
             <h2>{founderHeadline}</h2>
             <ul className="founders-bullets">
               <li>completely, consciously, in the body</li>
               <li>from the first moment to the last.</li>
             </ul>
-            <p>My name is Mira. I am a Wedding Expert &amp; Bridal Confidence Coach.</p>
-            <p>
-              For years I watched brides manage their weddings rather than experience them — present in body,
-              but slightly outside of the moment.
-            </p>
-            <p>
-              I work with brides across the Gulf and beyond to change that. Through presence training,
-              on-the-day coordination &amp; dedicated only to you professional bridal assistants, I ensure
-              that the most important day of your life is one you actually live through — completely,
-              consciously, from the first moment to the last.
-            </p>
-            <a href="https://wa.me/971506881534" target="_blank" rel="noopener" className="cta-link cta-link--white">
-              Work with me
-            </a>
+            <p>{founderBody1}</p>
+            <p>{founderBody2}</p>
+            <p>{founderBody3}</p>
+            <a href={waLink} target="_blank" rel="noopener" className="cta-link cta-link--white">Work with me</a>
           </Reveal>
           <Reveal className="founders-img" delay="delay-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -148,34 +165,13 @@ export default async function Home() {
         </div>
         <div className="services-list">
           {[
-            {
-              n: '01', title: 'Wedding Management',
-              body: 'The timeline is running.\nThe vendors are coordinating.\nThe family is managed.\nThe protocol is followed.\nYou don\'t know any of this — because you don\'t need to.\nYou arrive as the bride.\nWe handle everything else.',
-            },
-            {
-              n: '02', title: 'Bridal Assistants',
-              body: 'The dress that needs holding before you walk in. The touch-up between outfit changes. The quiet voice that tells you everything is going as planned. Our bridal assistants are trained, calm, and completely dedicated to you.',
-            },
-            {
-              n: '03', title: 'Catwalk & Confidence Training',
-              body: 'Those twenty seconds when every person who loves you turns to look — have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.',
-            },
-            {
-              n: '04', title: 'Content Creation',
-              body: 'Not staged. Not filtered beyond recognition. Our content creators move through your day with intention — capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.',
-            },
-            {
-              n: '05', title: 'Polaroid Service',
-              body: 'In a world of digital everything, there is something extraordinary about a photograph you can hold in your hands the same night it was taken. Our Polaroid service captures the candid, the tender, and the in-between.',
-            },
-            {
-              n: '06', title: 'Destination Wedding Coordination & Bridal Assistance',
-              body: 'Some weddings happen far from home.\nThe logistics multiply. The unknowns grow.\nAnd the bride still deserves to arrive knowing that every single detail — in a city she has never planned a wedding in — is handled.\nWe travel with you. We coordinate on the ground. We stand beside you on the day exactly as we would in Dubai.',
-            },
-            {
-              n: '07', title: 'Honeymoon Planning',
-              body: 'The wedding ends.\nAnd suddenly — for the first time in months — it is just the two of you.\nThat transition deserves the same attention as everything that came before it.\nWe plan the first journey of your marriage the way we approach everything: with complete dedication to the feeling of it.',
-            },
+            { n: '01', title: 'Wedding Management', body: 'The timeline is running.\nThe vendors are coordinating.\nThe family is managed.\nThe protocol is followed.\nYou don\'t know any of this — because you don\'t need to.\nYou arrive as the bride.\nWe handle everything else.' },
+            { n: '02', title: 'Bridal Assistants', body: 'The dress that needs holding before you walk in. The touch-up between outfit changes. The quiet voice that tells you everything is going as planned. Our bridal assistants are trained, calm, and completely dedicated to you.' },
+            { n: '03', title: 'Catwalk & Confidence Training', body: 'Those twenty seconds when every person who loves you turns to look — have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.' },
+            { n: '04', title: 'Content Creation', body: 'Not staged. Not filtered beyond recognition. Our content creators move through your day with intention — capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.' },
+            { n: '05', title: 'Polaroid Service', body: 'In a world of digital everything, there is something extraordinary about a photograph you can hold in your hands the same night it was taken. Our Polaroid service captures the candid, the tender, and the in-between.' },
+            { n: '06', title: 'Destination Wedding Coordination & Bridal Assistance', body: 'Some weddings happen far from home.\nThe logistics multiply. The unknowns grow.\nAnd the bride still deserves to arrive knowing that every single detail is handled.\nWe travel with you. We coordinate on the ground. We stand beside you on the day exactly as we would in Dubai.' },
+            { n: '07', title: 'Honeymoon Planning', body: 'The wedding ends.\nAnd suddenly — for the first time in months — it is just the two of you.\nWe plan the first journey of your marriage the way we approach everything: with complete dedication to the feeling of it. Not just the itinerary.' },
           ].map((s) => (
             <Reveal key={s.n} className="service-item">
               <span className="service-num">{s.n}</span>
@@ -219,32 +215,27 @@ export default async function Home() {
       {/* BRIDAL PRESENCE GUIDE */}
       <section className="bridal-guide" id="guide">
         <div className="guide-inner">
-          <Reveal tag="span" className="guide-label">A gift for you</Reveal>
+          <Reveal tag="span" className="guide-label">{guideLabel}</Reveal>
           <Reveal tag="h2" className="guide-headline" delay="delay-1">
-            Before you plan<br />another detail —<br /><em>read this.</em>
+            {guideHeadline.split('—')[0]}—<br /><em>{guideHeadline.split('—')[1]?.trim()}</em>
           </Reveal>
-          <Reveal tag="p" className="guide-sub" delay="delay-1">
-            The Bridal Presence Guide:<br />7 things every bride should know before she walks in.
-          </Reveal>
+          <Reveal tag="p" className="guide-sub" delay="delay-1">{guideSub}</Reveal>
           <Reveal className="guide-body" delay="delay-2">
-            <p>This is not a checklist. It is not a list of tips.</p>
-            <p>
-              It is the beginning of the conversation I have with every bride I work with personally —
-              the one that changes how she thinks about her wedding day, her entrance, and herself.
-            </p>
-            <p>Free. Yours. And more honest than most things you will read about weddings.</p>
+            <p>{guideBody1}</p>
+            <p>{guideBody2}</p>
+            <p>{guideBody3}</p>
           </Reveal>
-          <GuideForm />
+          <GuideForm pdfUrl={guidePdf} />
         </div>
       </section>
 
       {/* GET IN TOUCH */}
       <section className="footer-cta" id="contact">
-        <Reveal tag="span" className="label">Get in touch</Reveal>
+        <Reveal tag="span" className="label">{footerCtaLabel}</Reveal>
         <Reveal tag="h2" delay="delay-1">{footerText}</Reveal>
         <Reveal className="footer-cta-links" delay="delay-2">
-          <a href="https://wa.me/971506881534" target="_blank" rel="noopener" className="cta-link cta-link--white">WhatsApp us</a>
-          <a href="https://instagram.com/weddingessentials.me" target="_blank" rel="noopener" className="cta-link cta-link--white">Instagram</a>
+          <a href={waLink} target="_blank" rel="noopener" className="cta-link cta-link--white">WhatsApp us</a>
+          <a href={igLink} target="_blank" rel="noopener" className="cta-link cta-link--white">Instagram</a>
         </Reveal>
         <Reveal tag="p" delay="delay-3" style={{ marginTop: '40px', fontSize: '12px', color: 'rgba(255,255,255,0.28)' }}>
           Based in Dubai · Available across the UAE and GCC · International enquiries welcome
