@@ -441,46 +441,141 @@
 
     /* BRIDAL PRESENCE GUIDE */
     .bridal-guide {
-      background: #000;
+      background: #0f0d0b;
       color: #fff;
       padding: 80px 60px;
-      text-align: center;
+    }
+    .guide-inner {
+      max-width: 680px;
+      margin: 0 auto;
     }
     .guide-label {
       font-size: 11px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #c9a96e;
       display: block;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
-    .bridal-guide h2 {
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
+    .guide-headline {
+      font-size: clamp(2rem, 5vw, 3.4rem);
       font-weight: 300;
-      line-height: 1.25;
+      line-height: 1.2;
       letter-spacing: -0.01em;
       color: #fff;
-      max-width: 680px;
-      margin: 0 auto 22px;
+      margin-bottom: 28px;
+    }
+    .guide-headline em {
+      font-style: italic;
+      color: #c9a96e;
     }
     .guide-sub {
       font-size: 15px;
       font-style: italic;
       color: rgba(255,255,255,0.5);
-      max-width: 580px;
-      margin: 0 auto 36px;
+      margin-bottom: 36px;
       line-height: 1.65;
     }
     .guide-body {
-      font-size: 14px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.45);
-      max-width: 560px;
-      margin: 0 auto 40px;
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 48px;
     }
-    .guide-body p { margin-bottom: 14px; }
+    .guide-body p { margin-bottom: 20px; }
     .guide-body p:last-child { margin-bottom: 0; }
+    .guide-form { margin-top: 48px; }
+    .guide-field { margin-bottom: 28px; }
+    .guide-field label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      margin-bottom: 10px;
+    }
+    .guide-input, .guide-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,169,110,0.35);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 16px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      border-radius: 0;
+      box-sizing: border-box;
+    }
+    .guide-input::placeholder, .guide-textarea::placeholder {
+      color: rgba(255,255,255,0.22);
+    }
+    .guide-input:focus, .guide-textarea:focus {
+      border-color: rgba(201,169,110,0.8);
+    }
+    .guide-textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.7;
+    }
+    .guide-question-block {
+      border-left: 3px solid #c9a96e;
+      padding-left: 22px;
+      margin: 40px 0 28px;
+    }
+    .guide-question-qlabel {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c9a96e;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .guide-question-quote {
+      font-size: 15px;
+      font-style: italic;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .guide-submit-btn {
+      display: block;
+      width: 100%;
+      background: #c9a96e;
+      color: #fff;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 22px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 28px;
+    }
+    .guide-submit-btn:hover { background: #b8935c; }
+    .guide-fine {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(255,255,255,0.28);
+      margin-top: 16px;
+    }
+    .guide-thanks {
+      display: none;
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      padding: 48px 0;
+      line-height: 1.7;
+    }
 
     /* FOOTER CTA */
     .footer-cta {
@@ -578,6 +673,7 @@
       .services-section { padding: 56px 24px 28px; }
       .service-item { grid-template-columns: 36px 1fr; }
       .bridal-guide { padding: 56px 24px; }
+      .guide-headline { font-size: clamp(1.8rem, 8vw, 2.4rem); }
       footer { padding: 36px 24px; }
       .footer-bottom-row { flex-direction: column; gap: 24px; text-align: center; }
       .footer-socials-col { align-items: center; }
@@ -743,7 +839,7 @@
       <a href="https://wa.me/971506881534" target="_blank" rel="noopener" class="cta-link cta-link--white">Work with me</a>
     </div>
     <div class="founders-img reveal delay-2">
-      <img src="/IMG_7694.JPG" alt="Mira - Founder of Wedding Essentials">
+      <img src="/esmeerah.jpg" alt="Mira - Founder of Wedding Essentials">
     </div>
   </div>
 </section>
@@ -901,15 +997,47 @@
 </section>
 
 <!-- BRIDAL PRESENCE GUIDE -->
-<section class="bridal-guide">
-  <span class="guide-label reveal">A gift for you</span>
-  <h2 class="reveal delay-1">Before you plan another detail - read this.</h2>
-  <p class="guide-sub reveal delay-2">The Bridal Presence Guide: 10 things every bride should know before she walks in.</p>
-  <div class="guide-body reveal delay-3">
-    <p>This is not a checklist. It is not a list of tips.</p>
-    <p>It is the beginning of the conversation I have with every bride I work with personally - the one that changes how she thinks about her wedding day, her entrance, and herself.</p>
+<section class="bridal-guide" id="guide">
+  <div class="guide-inner">
+    <span class="guide-label reveal">A gift for you</span>
+    <h2 class="guide-headline reveal delay-1">Before you plan<br>another detail —<br><em>read this.</em></h2>
+    <p class="guide-sub reveal delay-1">The Bridal Presence Guide:<br>7 things every bride should know before she walks in.</p>
+    <div class="guide-body reveal delay-2">
+      <p>This is not a checklist. It is not a list of tips.</p>
+      <p>It is the beginning of the conversation I have with every bride I work with personally — the one that changes how she thinks about her wedding day, her entrance, and herself.</p>
+      <p>Free. Yours. And more honest than most things you will read about weddings.</p>
+    </div>
+
+    <form class="guide-form reveal delay-2" id="guideForm" novalidate>
+      <div class="guide-field">
+        <label for="guideName">Your Name</label>
+        <input class="guide-input" type="text" id="guideName" name="name" placeholder="Your name" required>
+      </div>
+      <div class="guide-field">
+        <label for="guideEmail">Email Address</label>
+        <input class="guide-input" type="email" id="guideEmail" name="email" placeholder="Your email address" required>
+      </div>
+      <div class="guide-field">
+        <label for="guidePhone">Phone / WhatsApp</label>
+        <input class="guide-input" type="text" id="guidePhone" name="phone" placeholder="Your number" required>
+      </div>
+
+      <div class="guide-question-block">
+        <span class="guide-question-qlabel">One question before you receive your guide</span>
+        <p class="guide-question-quote">"When you imagine walking into your wedding — what is the one thing you are most afraid of?"</p>
+      </div>
+
+      <div class="guide-field">
+        <textarea class="guide-textarea" id="guideAnswer" name="answer" placeholder="Take your time. There is no wrong answer."></textarea>
+      </div>
+
+      <button class="guide-submit-btn" type="submit">Send me the guide</button>
+      <span class="guide-fine">Free. No spam. Ever.</span>
+    </form>
+
+    <a id="guidePdfLink" href="https://raw.githubusercontent.com/zusmann/weddingessentials/main/The%20Bridal%20Presence%20Guide%20by%20Esmeerah%E2%9C%A8.pdf" download="The Bridal Presence Guide.pdf" style="display:none" aria-hidden="true" tabindex="-1"></a>
+    <div class="guide-thanks" id="guideThanks"></div>
   </div>
-  <a href="/bridal-guide.pdf" target="_blank" rel="noopener" class="cta-link cta-link--gold reveal delay-3">Download the guide</a>
 </section>
 
 <!-- GET IN TOUCH -->
@@ -965,6 +1093,36 @@
     const goToDesktop = initSlideshow('portfolioSlidesDesktop', 'portfolioWrapperDesktop', 4000);
     const goToMobile  = initSlideshow('portfolioSlidesMobile',  'portfolioWrapperMobile',  4000);
     window.addEventListener('resize', function() { goToDesktop(0); goToMobile(0); });
+  })();
+
+  // Guide form
+  (function() {
+    const form = document.getElementById('guideForm');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name   = document.getElementById('guideName').value.trim();
+      var email  = document.getElementById('guideEmail').value.trim();
+      var phone  = document.getElementById('guidePhone').value.trim();
+      var answer = document.getElementById('guideAnswer').value.trim();
+      if (!name || !email || !phone) return;
+
+      // 1. Trigger PDF download immediately
+      document.getElementById('guidePdfLink').click();
+
+      // 2. POST to API silently in background
+      fetch('/api/send-guide', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, phone: phone, answer: answer })
+      }).catch(function() {});
+
+      // 3. Show thank you message
+      form.style.display = 'none';
+      var thanks = document.getElementById('guideThanks');
+      thanks.textContent = 'Your guide is downloading now. Thank you, ' + name + '.';
+      thanks.style.display = 'block';
+    });
   })();
 </script>
 </body>
