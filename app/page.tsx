@@ -121,7 +121,7 @@ export default async function Home() {
           <Reveal tag="h2" delay="delay-1">{aboutHeadline}</Reveal>
           <Reveal tag="p" delay="delay-2">
             Created by{' '}
-            <a href={igLink} target="_blank" rel="noopener" className="instagram-link">
+            <a href="https://www.instagram.com/esmeerah" target="_blank" rel="noopener" className="instagram-link">
               @esmeerah
             </a>
           </Reveal>
