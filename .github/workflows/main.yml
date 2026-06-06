@@ -2,17 +2,18 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    - cron: '0 8 */3 * *'
+    - cron: '0 11 */3 * *'
   workflow_dispatch:
 
 jobs:
-  ping:
-    name: Ping Supabase via REST API
+  ping-wedding-essentials:
+    name: Ping Wedding Essentials Supabase
     runs-on: ubuntu-latest
     steps:
       - name: PATCH keep_alive table
         run: |
-          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+          HTTP_STATUS=$(curl -s -o /tmp/response_body.txt -w "%{http_code}" \
+            --max-time 30 \
             -X PATCH \
             "https://nwadggfvgplghnzekhzm.supabase.co/rest/v1/keep_alive?id=eq.1" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_WEDDING }}" \
@@ -20,9 +21,11 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Prefer: return=minimal" \
             -d "{\"pinged_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}")
-          echo "HTTP status: $HTTP_STATUS"
-          if [ "$HTTP_STATUS" != "204" ] && [ "$HTTP_STATUS" != "200" ]; then
-            echo "ERROR: Expected 204, got $HTTP_STATUS"
+          echo "HTTP Status: $HTTP_STATUS"
+          echo "Response: $(cat /tmp/response_body.txt)"
+          if [ "$HTTP_STATUS" = "204" ] || [ "$HTTP_STATUS" = "200" ]; then
+            echo "✅ Wedding Essentials Supabase pinged successfully"
+          else
+            echo "❌ Failed with status $HTTP_STATUS"
             exit 1
           fi
-          echo "Wedding Essentials Supabase pinged successfully"
