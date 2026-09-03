@@ -117,15 +117,35 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
   }
   return (
     <div style={{ ...s.page, ...s.center }}>
-      <div style={s.loginBox}>
+      <AdminMobileStyles />
+      <div style={s.loginBox} className="admin-login-box">
         <h1 style={s.loginTitle}>Wedding Essentials — Admin</h1>
         {error && <p style={s.error}>{error}</p>}
         <form onSubmit={submit}>
-          <input style={s.input} type="password" placeholder="Password" value={pw} onChange={e => setPw(e.target.value)} autoFocus />
+          <input style={s.input} className="admin-input" type="password" placeholder="Password" value={pw} onChange={e => setPw(e.target.value)} autoFocus />
           <button style={s.btn} type="submit">Enter</button>
         </form>
       </div>
     </div>
+  )
+}
+
+function AdminMobileStyles() {
+  return (
+    <style>{`
+      @media (max-width: 640px) {
+        .admin-header { padding: 14px 16px !important; }
+        .admin-header-title { font-size: 12px !important; }
+        .admin-tabs { padding: 0 16px !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+        .admin-tabs button { margin-right: 20px !important; white-space: nowrap; }
+        .admin-content { padding: 20px 16px !important; }
+        .admin-login-box { width: 100% !important; max-width: 340px; padding: 36px 24px !important; box-sizing: border-box; }
+        .admin-input, .admin-textarea { font-size: 16px !important; }
+        .admin-img-card { padding: 16px !important; }
+        .admin-img-card--portfolio { width: calc(50% - 6px) !important; }
+        .admin-save-row { flex-wrap: wrap; gap: 8px; }
+      }
+    `}</style>
   )
 }
 
@@ -161,7 +181,7 @@ function TextContentTab() {
   })
 
   return (
-    <div style={s.content}>
+    <div style={s.content} className="admin-content">
       <p style={{ fontSize: 13, color: 'rgba(240,237,232,0.35)', marginBottom: 8 }}>
         Edit any text below and click Save. Changes appear on the website immediately.
       </p>
@@ -177,18 +197,20 @@ function TextContentTab() {
                 {meta.multiline ? (
                   <textarea
                     style={{ ...s.textarea, minHeight: val.length > 120 ? 120 : 60 }}
+                    className="admin-textarea"
                     value={val}
                     onChange={e => setValues(prev => ({ ...prev, [id]: e.target.value }))}
                   />
                 ) : (
                   <input
                     style={s.textInput}
+                    className="admin-input"
                     type="text"
                     value={val}
                     onChange={e => setValues(prev => ({ ...prev, [id]: e.target.value }))}
                   />
                 )}
-                <div style={{ display: 'flex', alignItems: 'center', marginTop: 8 }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginTop: 8 }} className="admin-save-row">
                   <button style={s.saveBtn} onClick={() => save(id)}>Save</button>
                   {saved[id] && <span style={s.savedMsg}>Saved ✓</span>}
                 </div>
@@ -240,7 +262,7 @@ function ImagesTab() {
   const displayRows = allIds.map(id => rows.find(r => r.id === id) ?? { id, url: '' })
 
   return (
-    <div style={s.content}>
+    <div style={s.content} className="admin-content">
       <p style={{ fontSize: 13, color: 'rgba(240,237,232,0.35)', marginBottom: 32 }}>
         Upload new images or a new PDF. Changes appear on the website immediately.
       </p>
@@ -255,7 +277,10 @@ function ImagesTab() {
         {sectionBreak && (
           <p style={{ ...s.sectionHead, marginTop: 48 }}>Portfolio Images (21 photos in carousel)</p>
         )}
-          <div style={{ ...s.imgCard, ...(isPortfolio ? { display: 'inline-flex', flexDirection: 'column' as const, width: 'calc(33% - 8px)', margin: '0 4px 8px 0', verticalAlign: 'top', padding: 16 } : {}) }}>
+          <div
+            style={{ ...s.imgCard, ...(isPortfolio ? { display: 'inline-flex', flexDirection: 'column' as const, width: 'calc(33% - 8px)', margin: '0 4px 8px 0', verticalAlign: 'top', padding: 16 } : {}) }}
+            className={`admin-img-card${isPortfolio ? ' admin-img-card--portfolio' : ''}`}
+          >
             <span style={s.imgLabel}>{label}</span>
             {row.url && <p style={s.currentUrl}>Current: {row.url}</p>}
             {isImg && (
@@ -311,7 +336,7 @@ function SubmissionsTab() {
   if (!loaded) return <div style={{ ...s.content, color: 'rgba(240,237,232,0.4)' }}>Loading...</div>
 
   return (
-    <div style={{ ...s.content, maxWidth: '100%', overflowX: 'auto' }}>
+    <div style={{ ...s.content, maxWidth: '100%', overflowX: 'auto' }} className="admin-content">
       <p style={{ fontSize: 13, color: 'rgba(240,237,232,0.35)', marginBottom: 32 }}>
         {rows.length} guide request{rows.length !== 1 ? 's' : ''} — newest first.
       </p>
@@ -362,13 +387,14 @@ export default function AdminPage() {
 
   return (
     <div style={s.page}>
-      <div style={s.header}>
-        <span style={s.headerTitle}>Wedding Essentials — Admin</span>
+      <AdminMobileStyles />
+      <div style={s.header} className="admin-header">
+        <span style={s.headerTitle} className="admin-header-title">Wedding Essentials — Admin</span>
         <button style={s.logoutBtn} onClick={() => { sessionStorage.removeItem('adminAuth'); setAuthed(false) }}>
           Log out
         </button>
       </div>
-      <div style={s.tabs}>
+      <div style={s.tabs} className="admin-tabs">
         {tabs.map(t => (
           <button key={t.key} style={{ ...s.tab, ...(tab === t.key ? s.tabActive : {}) }} onClick={() => setTab(t.key)}>
             {t.label}
