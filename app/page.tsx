@@ -4,6 +4,8 @@ import PortfolioFilm from './components/PortfolioFilm'
 import GuideForm from './components/GuideForm'
 import Reveal from './components/Reveal'
 
+export const dynamic = 'force-dynamic'
+
 async function getContent(id: string, fallback: string): Promise<string> {
   try {
     const { data } = await supabase.from('content').select('value').eq('id', id).single()
