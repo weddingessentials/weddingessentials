@@ -44,6 +44,22 @@ export default async function Home() {
     footerText,
     whatsappNumber,
     instagramHandle,
+    servicesHeadline,
+    servicesSub,
+    service01Title, service01Body,
+    service02Title, service02Body,
+    service03Title, service03Body,
+    service04Title, service04Body,
+    service05Title, service05Body,
+    service06Title, service06Body,
+    service07Title, service07Body,
+    faqHeadline,
+    faq01Q, faq01A,
+    faq02Q, faq02A,
+    faq03Q, faq03A,
+    faq04Q, faq04A,
+    faq05Q, faq05A,
+    faq06Q, faq06A,
     heroImage,
     founderPhoto,
     guidePdf,
@@ -68,6 +84,35 @@ export default async function Home() {
     getContent('footer_text', 'Every wedding begins with a conversation.'),
     getContent('whatsapp_number', '971506881534'),
     getContent('instagram_handle', 'weddingessentials.me'),
+    getContent('services_headline', 'What we do'),
+    getContent('services_sub', 'Different services. One purpose.'),
+    getContent('service_01_title', 'Wedding Management'),
+    getContent('service_01_body', 'The timeline is running.\nThe vendors are coordinating.\nThe family is managed.\nThe protocol is followed.\nYou don\'t know any of this — because you don\'t need to.\nYou arrive as the bride.\nWe handle everything else.'),
+    getContent('service_02_title', 'Bridal Assistants'),
+    getContent('service_02_body', 'The dress that needs holding before you walk in. The touch-up between outfit changes. The quiet voice that tells you everything is going as planned. Our bridal assistants are trained, calm, and completely dedicated to you.'),
+    getContent('service_03_title', 'Catwalk & Confidence Training'),
+    getContent('service_03_body', 'Those twenty seconds when every person who loves you turns to look — have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.'),
+    getContent('service_04_title', 'Content Creation'),
+    getContent('service_04_body', 'Not staged. Not filtered beyond recognition. Our content creators move through your day with intention — capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.'),
+    getContent('service_05_title', 'Polaroid Service'),
+    getContent('service_05_body', 'In a world of digital everything, there is something extraordinary about a photograph you can hold in your hands the same night it was taken. Our Polaroid service captures the candid, the tender, and the in-between.'),
+    getContent('service_06_title', 'Destination Wedding Coordination & Bridal Assistance'),
+    getContent('service_06_body', 'Some weddings happen far from home.\nThe logistics multiply. The unknowns grow.\nAnd the bride still deserves to arrive knowing that every single detail is handled.\nWe travel with you. We coordinate on the ground. We stand beside you on the day exactly as we would in Dubai.'),
+    getContent('service_07_title', 'Honeymoon Planning'),
+    getContent('service_07_body', 'The wedding ends.\nAnd suddenly — for the first time in months — it is just the two of you.\nWe plan the first journey of your marriage the way we approach everything: with complete dedication to the feeling of it. Not just the itinerary.'),
+    getContent('faq_headline', 'Common questions'),
+    getContent('faq_01_q', 'Where are you based and where do you work?'),
+    getContent('faq_01_a', 'We are based in Dubai and serve brides across the UAE and GCC. We also accept international enquiries — for weddings outside the region, please reach out directly and we will discuss logistics.'),
+    getContent('faq_02_q', 'How far in advance should I book?'),
+    getContent('faq_02_a', 'We recommend reaching out at least 3–6 months before your wedding date. We work with a limited number of brides each season to ensure every client receives our full attention, so availability can fill quickly during peak seasons.'),
+    getContent('faq_03_q', 'What does a bridal assistant actually do on the day?'),
+    getContent('faq_03_a', 'Your bridal assistant is dedicated entirely to you from the moment you begin getting ready until the last moment of the evening. She manages your dress, coordinates touch-ups between outfit changes, keeps you calm and informed, and makes sure you never have to think about what comes next.'),
+    getContent('faq_04_q', 'How many sessions does the catwalk training involve?'),
+    getContent('faq_04_a', 'Mira works with each bride individually and the number of sessions depends on your goals and timeline. Most brides do 2–4 sessions. Each session is one-on-one and fully personalised — this is not a group class. You can book a single introductory session to start.'),
+    getContent('faq_05_q', 'Can I book individual services or do I have to take everything?'),
+    getContent('faq_05_a', 'Absolutely. Each of our services can be booked independently. Many brides start with one service and add others as their date approaches. Get in touch and we will help you decide what makes sense for your wedding.'),
+    getContent('faq_06_q', 'Do you work with non-Arabic or multicultural weddings?'),
+    getContent('faq_06_a', 'Yes. We have worked with brides from across the world in Dubai and the GCC. We are experienced across a wide range of cultural traditions and ceremony formats. Every bride is welcome.'),
     getImage('hero_image', '/12300.jpg'),
     getImage('founder_photo', '/esmeerah.jpg'),
     getImage('guide_pdf', 'https://raw.githubusercontent.com/weddingessentials/weddingessentials/main/The%20Bridal%20Presence%20Guide%20by%20Esmeerah%E2%9C%A8.pdf'),
@@ -173,19 +218,19 @@ export default async function Home() {
       <section className="services-section" id="services">
         <div className="services-header">
           <Reveal>
-            <h2>What we do</h2>
-            <p className="services-sub">Different services. One purpose.</p>
+            <h2>{servicesHeadline}</h2>
+            <p className="services-sub">{servicesSub}</p>
           </Reveal>
         </div>
         <div className="services-list">
           {[
-            { n: '01', title: 'Wedding Management', body: 'The timeline is running.\nThe vendors are coordinating.\nThe family is managed.\nThe protocol is followed.\nYou don\'t know any of this — because you don\'t need to.\nYou arrive as the bride.\nWe handle everything else.' },
-            { n: '02', title: 'Bridal Assistants', body: 'The dress that needs holding before you walk in. The touch-up between outfit changes. The quiet voice that tells you everything is going as planned. Our bridal assistants are trained, calm, and completely dedicated to you.' },
-            { n: '03', title: 'Catwalk & Confidence Training', body: 'Those twenty seconds when every person who loves you turns to look — have you prepared for them? Mira works with brides one-on-one to build the presence, posture, and confidence that makes an entrance unforgettable.' },
-            { n: '04', title: 'Content Creation', body: 'Not staged. Not filtered beyond recognition. Our content creators move through your day with intention — capturing the moments that happen between the planned ones. Content you will still want to watch in ten years.' },
-            { n: '05', title: 'Polaroid Service', body: 'In a world of digital everything, there is something extraordinary about a photograph you can hold in your hands the same night it was taken. Our Polaroid service captures the candid, the tender, and the in-between.' },
-            { n: '06', title: 'Destination Wedding Coordination & Bridal Assistance', body: 'Some weddings happen far from home.\nThe logistics multiply. The unknowns grow.\nAnd the bride still deserves to arrive knowing that every single detail is handled.\nWe travel with you. We coordinate on the ground. We stand beside you on the day exactly as we would in Dubai.' },
-            { n: '07', title: 'Honeymoon Planning', body: 'The wedding ends.\nAnd suddenly — for the first time in months — it is just the two of you.\nWe plan the first journey of your marriage the way we approach everything: with complete dedication to the feeling of it. Not just the itinerary.' },
+            { n: '01', title: service01Title, body: service01Body },
+            { n: '02', title: service02Title, body: service02Body },
+            { n: '03', title: service03Title, body: service03Body },
+            { n: '04', title: service04Title, body: service04Body },
+            { n: '05', title: service05Title, body: service05Body },
+            { n: '06', title: service06Title, body: service06Body },
+            { n: '07', title: service07Title, body: service07Body },
           ].map((s) => (
             <Reveal key={s.n} className="service-item">
               <span className="service-num">{s.n}</span>
@@ -203,15 +248,15 @@ export default async function Home() {
         <div className="faq-inner">
           <Reveal className="faq-header">
             <span className="label">FAQs</span>
-            <h2>Common questions</h2>
+            <h2>{faqHeadline}</h2>
           </Reveal>
           {[
-            { q: 'Where are you based and where do you work?', a: 'We are based in Dubai and serve brides across the UAE and GCC. We also accept international enquiries — for weddings outside the region, please reach out directly and we will discuss logistics.' },
-            { q: 'How far in advance should I book?', a: 'We recommend reaching out at least 3–6 months before your wedding date. We work with a limited number of brides each season to ensure every client receives our full attention, so availability can fill quickly during peak seasons.' },
-            { q: 'What does a bridal assistant actually do on the day?', a: 'Your bridal assistant is dedicated entirely to you from the moment you begin getting ready until the last moment of the evening. She manages your dress, coordinates touch-ups between outfit changes, keeps you calm and informed, and makes sure you never have to think about what comes next.' },
-            { q: 'How many sessions does the catwalk training involve?', a: 'Mira works with each bride individually and the number of sessions depends on your goals and timeline. Most brides do 2–4 sessions. Each session is one-on-one and fully personalised — this is not a group class. You can book a single introductory session to start.' },
-            { q: 'Can I book individual services or do I have to take everything?', a: 'Absolutely. Each of our services can be booked independently. Many brides start with one service and add others as their date approaches. Get in touch and we will help you decide what makes sense for your wedding.' },
-            { q: 'Do you work with non-Arabic or multicultural weddings?', a: 'Yes. We have worked with brides from across the world in Dubai and the GCC. We are experienced across a wide range of cultural traditions and ceremony formats. Every bride is welcome.' },
+            { q: faq01Q, a: faq01A },
+            { q: faq02Q, a: faq02A },
+            { q: faq03Q, a: faq03A },
+            { q: faq04Q, a: faq04A },
+            { q: faq05Q, a: faq05A },
+            { q: faq06Q, a: faq06A },
           ].map((item, i) => (
             <Reveal key={i} className="faq-item">
               <details>
