@@ -31,6 +31,35 @@ const CONTENT_LABELS: Record<string, { label: string; section: string; multiline
   footer_text:      { label: 'Footer headline', section: 'Footer', multiline: true },
   whatsapp_number:  { label: 'WhatsApp number (digits only, e.g. 971506881534)', section: 'Contact', multiline: false },
   instagram_handle: { label: 'Instagram handle (without @)', section: 'Contact', multiline: false },
+  services_headline: { label: 'Section headline ("What we do")', section: 'Services', multiline: false },
+  services_sub:       { label: 'Section subtitle', section: 'Services', multiline: false },
+  service_01_title: { label: 'Service 01 — title', section: 'Services', multiline: false },
+  service_01_body:  { label: 'Service 01 — body', section: 'Services', multiline: true },
+  service_02_title: { label: 'Service 02 — title', section: 'Services', multiline: false },
+  service_02_body:  { label: 'Service 02 — body', section: 'Services', multiline: true },
+  service_03_title: { label: 'Service 03 — title', section: 'Services', multiline: false },
+  service_03_body:  { label: 'Service 03 — body', section: 'Services', multiline: true },
+  service_04_title: { label: 'Service 04 — title', section: 'Services', multiline: false },
+  service_04_body:  { label: 'Service 04 — body', section: 'Services', multiline: true },
+  service_05_title: { label: 'Service 05 — title', section: 'Services', multiline: false },
+  service_05_body:  { label: 'Service 05 — body', section: 'Services', multiline: true },
+  service_06_title: { label: 'Service 06 — title', section: 'Services', multiline: false },
+  service_06_body:  { label: 'Service 06 — body', section: 'Services', multiline: true },
+  service_07_title: { label: 'Service 07 — title', section: 'Services', multiline: false },
+  service_07_body:  { label: 'Service 07 — body', section: 'Services', multiline: true },
+  faq_headline: { label: 'Section headline ("Common questions")', section: 'FAQ', multiline: false },
+  faq_01_q:     { label: 'FAQ 01 — question', section: 'FAQ', multiline: false },
+  faq_01_a:     { label: 'FAQ 01 — answer', section: 'FAQ', multiline: true },
+  faq_02_q:     { label: 'FAQ 02 — question', section: 'FAQ', multiline: false },
+  faq_02_a:     { label: 'FAQ 02 — answer', section: 'FAQ', multiline: true },
+  faq_03_q:     { label: 'FAQ 03 — question', section: 'FAQ', multiline: false },
+  faq_03_a:     { label: 'FAQ 03 — answer', section: 'FAQ', multiline: true },
+  faq_04_q:     { label: 'FAQ 04 — question', section: 'FAQ', multiline: false },
+  faq_04_a:     { label: 'FAQ 04 — answer', section: 'FAQ', multiline: true },
+  faq_05_q:     { label: 'FAQ 05 — question', section: 'FAQ', multiline: false },
+  faq_05_a:     { label: 'FAQ 05 — answer', section: 'FAQ', multiline: true },
+  faq_06_q:     { label: 'FAQ 06 — question', section: 'FAQ', multiline: false },
+  faq_06_a:     { label: 'FAQ 06 — answer', section: 'FAQ', multiline: true },
 }
 
 const IMAGE_LABELS: Record<string, string> = {
@@ -117,7 +146,7 @@ function TextContentTab() {
   }, [])
 
   const save = async (id: string) => {
-    await supabase.from('content').update({ value: values[id], updated_at: new Date().toISOString() }).eq('id', id)
+    await supabase.from('content').upsert({ id, value: values[id], updated_at: new Date().toISOString() })
     setSaved(prev => ({ ...prev, [id]: true }))
     setTimeout(() => setSaved(prev => ({ ...prev, [id]: false })), 2500)
   }
